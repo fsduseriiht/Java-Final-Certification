@@ -1,0 +1,310 @@
+{
+	"id": "09e21da1-7332-286b-d7cf-43638ab2cb2e",
+	"name": "localhost - projectmanagerbackend",
+	"description": "",
+	"order": [
+		"b87e476d-2a00-a14b-e910-30aea7576314",
+		"b9d466a4-d7a3-a316-2a7d-ec538e37c856",
+		"7f207826-d4a5-d42c-c2a1-bb083cfa036c",
+		"abad55b9-4036-a596-be29-e383ced869af",
+		"114e3ea5-c1d4-0da5-46b7-b325596c47e2",
+		"310434d2-eef9-29cb-3535-c95f84aa54e3",
+		"653b776c-b328-e25e-f7e5-3369b85f7e57",
+		"6baf52ca-8b43-6526-51b5-e5f953292b71",
+		"5165c4a0-e7a0-436f-578a-a1da191018ff",
+		"b304c0e5-9691-4643-4e9f-5e12abaf003c"
+	],
+	"folders": [],
+	"folders_order": [],
+	"timestamp": 1544257152057,
+	"owner": 0,
+	"public": false,
+	"requests": [
+		{
+			"id": "114e3ea5-c1d4-0da5-46b7-b325596c47e2",
+			"headers": "Content-Type: application/json\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "{{baseurl}}task/:taskId",
+			"queryParams": [],
+			"preRequestScript": "// For Cloud Testing\n// var apiUrl = \"\";\n\n//For Local Machine Testing\nvar domain = \"localhost\";\nvar port = \"8080\";\nvar appContext = \"projectmanagerbackend\";\nvar apiUrl = \"http://\" + domain + \":\" + port +\"/\" + appContext + \"/\";\n\n\npostman.setEnvironmentVariable(\"baseurl\", apiUrl);\n\nvar reqBody = JSON.parse(request.data);\nvar taskId = reqBody.taskId;\npostman.setEnvironmentVariable(\"taskId\", taskId);",
+			"pathVariables": {
+				"taskId": "{{taskId}}"
+			},
+			"pathVariableData": [
+				{
+					"key": "taskId",
+					"value": "{{taskId}}"
+				}
+			],
+			"method": "DELETE",
+			"data": [],
+			"dataMode": "raw",
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1544257208840,
+			"name": "task/:taskId",
+			"description": "",
+			"collectionId": "09e21da1-7332-286b-d7cf-43638ab2cb2e",
+			"responses": [],
+			"rawModeData": "{\n    \"taskId\": 33,\n    \"task\": \"TaskName16\",\n    \"parentId\": 105,\n    \"parentTask\": \"ParentTask5\",\n    \"startDate\": \"2018-09-08T18:30:00.000+0000\",\n    \"endDate\": \"2018-09-08T18:30:00.000+0000\",\n    \"priority\": 10\n}"
+		},
+		{
+			"id": "310434d2-eef9-29cb-3535-c95f84aa54e3",
+			"headers": "",
+			"headerData": [],
+			"url": "{{baseurl}}parent/dump",
+			"queryParams": [],
+			"preRequestScript": "// For Cloud Testing\n// var apiUrl = \"\";\n\n//For Local Machine Testing\nvar domain = \"localhost\";\nvar port = \"8080\";\nvar appContext = \"projectmanagerbackend\";\nvar apiUrl = \"http://\" + domain + \":\" + port +\"/\" + appContext + \"/\";\n\n\npostman.setEnvironmentVariable(\"baseurl\", apiUrl);",
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "GET",
+			"data": null,
+			"dataMode": "params",
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1544257227023,
+			"name": "parent/dump",
+			"description": "",
+			"collectionId": "09e21da1-7332-286b-d7cf-43638ab2cb2e",
+			"responses": []
+		},
+		{
+			"id": "5165c4a0-e7a0-436f-578a-a1da191018ff",
+			"headers": "Content-Type: application/json\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "{{baseurl}}parent/:parentId",
+			"queryParams": [],
+			"preRequestScript": "// For Cloud Testing\n// var apiUrl = \"\";\n\n//For Local Machine Testing\nvar domain = \"localhost\";\nvar port = \"8080\";\nvar appContext = \"projectmanagerbackend\";\nvar apiUrl = \"http://\" + domain + \":\" + port +\"/\" + appContext + \"/\";\n\n\npostman.setEnvironmentVariable(\"baseurl\", apiUrl);\n\nvar reqBody = JSON.parse(request.data)\nvar parentId = reqBody.parentId;\npostman.setEnvironmentVariable(\"parentId\", parentId);",
+			"pathVariables": {
+				"parentId": "{{parentId}}"
+			},
+			"pathVariableData": [
+				{
+					"key": "parentId",
+					"value": "{{parentId}}"
+				}
+			],
+			"method": "PUT",
+			"data": [],
+			"dataMode": "raw",
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1544257238141,
+			"name": "parent/{id}",
+			"description": "",
+			"collectionId": "09e21da1-7332-286b-d7cf-43638ab2cb2e",
+			"responses": [],
+			"rawModeData": "{\r\n    \"parentId\": 101,\r\n    \"parentTask\": \"ParentTask1_updated\"\r\n}"
+		},
+		{
+			"id": "653b776c-b328-e25e-f7e5-3369b85f7e57",
+			"headers": "",
+			"headerData": [],
+			"url": "{{baseurl}}parent/list",
+			"queryParams": [],
+			"preRequestScript": "// For Cloud Testing\n// var apiUrl = \"\";\n\n//For Local Machine Testing\nvar domain = \"localhost\";\nvar port = \"8080\";\nvar appContext = \"projectmanagerbackend\";\nvar apiUrl = \"http://\" + domain + \":\" + port +\"/\" + appContext + \"/\";\n\n\npostman.setEnvironmentVariable(\"baseurl\", apiUrl);",
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "GET",
+			"data": null,
+			"dataMode": "params",
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1544257230259,
+			"name": "parent/list",
+			"description": "",
+			"collectionId": "09e21da1-7332-286b-d7cf-43638ab2cb2e",
+			"responses": []
+		},
+		{
+			"id": "6baf52ca-8b43-6526-51b5-e5f953292b71",
+			"headers": "Content-Type: application/json\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "{{baseurl}}parent/",
+			"queryParams": [],
+			"preRequestScript": "// For Cloud Testing\n// var apiUrl = \"\";\n\n//For Local Machine Testing\nvar domain = \"localhost\";\nvar port = \"8080\";\nvar appContext = \"projectmanagerbackend\";\nvar apiUrl = \"http://\" + domain + \":\" + port +\"/\" + appContext + \"/\";\n\n\npostman.setEnvironmentVariable(\"baseurl\", apiUrl);",
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "POST",
+			"data": [],
+			"dataMode": "raw",
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1544257234396,
+			"name": "parent/",
+			"description": "",
+			"collectionId": "09e21da1-7332-286b-d7cf-43638ab2cb2e",
+			"responses": [],
+			"rawModeData": "{\n    \"parentId\": 110,\n    \"parentTask\": \"ParentTask10\"\n}"
+		},
+		{
+			"id": "7f207826-d4a5-d42c-c2a1-bb083cfa036c",
+			"headers": "Content-Type: application/json\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "{{baseurl}}task/",
+			"queryParams": [],
+			"preRequestScript": "// For Cloud Testing\n// var apiUrl = \"\";\n\n//For Local Machine Testing\nvar domain = \"localhost\";\nvar port = \"8080\";\nvar appContext = \"projectmanagerbackend\";\nvar apiUrl = \"http://\" + domain + \":\" + port +\"/\" + appContext + \"/\";\n\n\npostman.setEnvironmentVariable(\"baseurl\", apiUrl);",
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "POST",
+			"data": [],
+			"dataMode": "raw",
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1544257197202,
+			"name": "task/",
+			"description": "",
+			"collectionId": "09e21da1-7332-286b-d7cf-43638ab2cb2e",
+			"responses": [],
+			"rawModeData": "{\n   \n    \"task\": \"TaskName16\",\n    \"parentId\": 105,\n    \n    \"startDate\": \"2018-09-08T18:30:00.000+0000\",\n    \"endDate\": \"2018-09-08T18:30:00.000+0000\",\n    \"priority\": 10\n}"
+		},
+		{
+			"id": "abad55b9-4036-a596-be29-e383ced869af",
+			"headers": "Content-Type: application/json\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "{{baseurl}}task/:taskId",
+			"queryParams": [],
+			"preRequestScript": "// For Cloud Testing\n// var apiUrl = \"\";\n\n//For Local Machine Testing\nvar domain = \"localhost\";\nvar port = \"8080\";\nvar appContext = \"projectmanagerbackend\";\nvar apiUrl = \"http://\" + domain + \":\" + port +\"/\" + appContext + \"/\";\n\n\npostman.setEnvironmentVariable(\"baseurl\", apiUrl);\n\nvar reqBody = JSON.parse(request.data)\nvar taskId = reqBody.taskId;\npostman.setEnvironmentVariable(\"taskId\", taskId);",
+			"pathVariables": {
+				"taskId": "{{taskId}}"
+			},
+			"pathVariableData": [
+				{
+					"key": "taskId",
+					"value": "{{taskId}}"
+				}
+			],
+			"method": "PUT",
+			"data": [],
+			"dataMode": "raw",
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1544257202330,
+			"name": "task/{id}",
+			"description": "",
+			"collectionId": "09e21da1-7332-286b-d7cf-43638ab2cb2e",
+			"responses": [],
+			"rawModeData": "{\n    \"taskId\": 34,\n    \"task\": \"TaskName16_updated1\",\n    \"parentId\": 105,\n    \"parentTask\": \"ParentTask5\",\n    \"startDate\": \"2018-09-08T18:30:00.000+0000\",\n    \"endDate\": \"2018-09-08T18:30:00.000+0000\",\n    \"priority\": 11\n}"
+		},
+		{
+			"id": "b304c0e5-9691-4643-4e9f-5e12abaf003c",
+			"headers": "Content-Type: application/json\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "{{baseurl}}parent/:parentId",
+			"queryParams": [],
+			"preRequestScript": "// For Cloud Testing\n// var apiUrl = \"\";\n\n//For Local Machine Testing\nvar domain = \"localhost\";\nvar port = \"8080\";\nvar appContext = \"projectmanagerbackend\";\nvar apiUrl = \"http://\" + domain + \":\" + port +\"/\" + appContext + \"/\";\n\n\npostman.setEnvironmentVariable(\"baseurl\", apiUrl);\n\nvar reqBody = JSON.parse(request.data);\nvar parentId = reqBody.parentId;\npostman.setEnvironmentVariable(\"parentId\", parentId);",
+			"pathVariables": {
+				"parentId": "{{parentId}}"
+			},
+			"pathVariableData": [
+				{
+					"key": "parentId",
+					"value": "{{parentId}}"
+				}
+			],
+			"method": "DELETE",
+			"data": [],
+			"dataMode": "raw",
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1544257241705,
+			"name": "parent/:parentId",
+			"description": "",
+			"collectionId": "09e21da1-7332-286b-d7cf-43638ab2cb2e",
+			"responses": [],
+			"rawModeData": "{\r\n    \"parentId\": 1,\r\n    \"parentTask\": \"ParentTask1_updated\"\r\n}"
+		},
+		{
+			"id": "b87e476d-2a00-a14b-e910-30aea7576314",
+			"headers": "",
+			"headerData": [],
+			"url": "{{baseurl}}task/dump",
+			"queryParams": [],
+			"preRequestScript": "// For Cloud Testing\n// var apiUrl = \"\";\n\n//For Local Machine Testing\nvar domain = \"localhost\";\nvar port = \"8080\";\nvar appContext = \"projectmanagerbackend\";\nvar apiUrl = \"http://\" + domain + \":\" + port +\"/\" + appContext + \"/\";\n\n\npostman.setEnvironmentVariable(\"baseurl\", apiUrl);",
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "GET",
+			"data": null,
+			"dataMode": "params",
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1544257184724,
+			"name": "task/dump",
+			"description": "",
+			"collectionId": "09e21da1-7332-286b-d7cf-43638ab2cb2e",
+			"responses": []
+		},
+		{
+			"id": "b9d466a4-d7a3-a316-2a7d-ec538e37c856",
+			"headers": "",
+			"headerData": [],
+			"url": "{{baseurl}}task/list",
+			"queryParams": [],
+			"preRequestScript": "// For Cloud Testing\n// var apiUrl = \"\";\n\n//For Local Machine Testing\nvar domain = \"localhost\";\nvar port = \"8080\";\nvar appContext = \"projectmanagerbackend\";\nvar apiUrl = \"http://\" + domain + \":\" + port +\"/\" + appContext + \"/\";\n\n\npostman.setEnvironmentVariable(\"baseurl\", apiUrl);",
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "GET",
+			"data": null,
+			"dataMode": "params",
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1544257190371,
+			"name": "task/list",
+			"description": "",
+			"collectionId": "09e21da1-7332-286b-d7cf-43638ab2cb2e",
+			"responses": []
+		}
+	]
+}

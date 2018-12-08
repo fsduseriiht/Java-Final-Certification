@@ -1,4 +1,4 @@
-package com.cts.fsd.tasktracker;
+package com.cts.fsd.projectmanager;
 
 import java.io.IOException;
 
@@ -10,31 +10,31 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  *
  */
 @SpringBootApplication
-public class TasktrackerApplication extends ServletInitializer {
+public class ApplicationMain extends ServletInitializer {
 	public static void main(String[] args) throws IOException {
 		
 //		set application configurations required to run the spring boot application
 		setSpringBootApplicationConfiguration();
 		
 //		actual method call inside the main() method to run Spring Boot Application 
-		SpringApplication.run(TasktrackerApplication.class, args);
+		SpringApplication.run(ApplicationMain.class, args);
 	}
 	
 	
 	private static void setSpringBootApplicationConfiguration() {
 		
-		System.setProperty("server.servlet.context-path", "/tasktrackerbackend");
+		System.setProperty("server.servlet.context-path", "/projectmanagerbackend");
 //		System.setProperty("server.port", "8080");
 		
 //		spring.datasource properties
-		System.setProperty("spring.datasource.url", "jdbc:mysql://localhost:3306/fsd_task_tracker?createDatabaseIfNotExist=true");
+		System.setProperty("spring.datasource.url", "jdbc:mysql://localhost:3306/fsd_project_manager?createDatabaseIfNotExist=true");
 		System.setProperty("spring.datasource.username", "root");
 		System.setProperty("spring.datasource.password", "admin");
 		System.setProperty("spring.datasource.driverClassName", "com.mysql.jdbc.Driver");
 		System.setProperty("spring.datasource.initialize", "true");
 		
-		/*System.setProperty("spring.datasource.url", "jdbc:h2:file:~\\tmp\\tasktracker");
-		System.setProperty("spring.datasource.name", "task_db");
+		/*System.setProperty("spring.datasource.url", "jdbc:h2:file:~\\tmp\\fsd_project_manager");
+		System.setProperty("spring.datasource.name", "fsd_project_manager_db");
 		System.setProperty("spring.datasource.username", "SA");
 		System.setProperty("spring.datasource.password", "");
 		System.setProperty("spring.datasource.driverClassName", "org.h2.Driver");

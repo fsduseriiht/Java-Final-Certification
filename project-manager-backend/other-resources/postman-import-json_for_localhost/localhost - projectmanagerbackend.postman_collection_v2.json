@@ -1,8 +1,8 @@
 {
 	"variables": [],
 	"info": {
-		"name": "localhost - TaskTracker",
-		"_postman_id": "e56e8c77-5810-1bab-1338-424a0abdd376",
+		"name": "localhost - projectmanagerbackend",
+		"_postman_id": "09e21da1-7332-286b-d7cf-43638ab2cb2e",
 		"description": "",
 		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
 	},
@@ -21,7 +21,7 @@
 							"//For Local Machine Testing",
 							"var domain = \"localhost\";",
 							"var port = \"8080\";",
-							"var appContext = \"tasktrackerbackend\";",
+							"var appContext = \"projectmanagerbackend\";",
 							"var apiUrl = \"http://\" + domain + \":\" + port +\"/\" + appContext + \"/\";",
 							"",
 							"",
@@ -53,7 +53,7 @@
 							"//For Local Machine Testing",
 							"var domain = \"localhost\";",
 							"var port = \"8080\";",
-							"var appContext = \"tasktrackerbackend\";",
+							"var appContext = \"projectmanagerbackend\";",
 							"var apiUrl = \"http://\" + domain + \":\" + port +\"/\" + appContext + \"/\";",
 							"",
 							"",
@@ -85,7 +85,7 @@
 							"//For Local Machine Testing",
 							"var domain = \"localhost\";",
 							"var port = \"8080\";",
-							"var appContext = \"tasktrackerbackend\";",
+							"var appContext = \"projectmanagerbackend\";",
 							"var apiUrl = \"http://\" + domain + \":\" + port +\"/\" + appContext + \"/\";",
 							"",
 							"",
@@ -126,7 +126,7 @@
 							"//For Local Machine Testing",
 							"var domain = \"localhost\";",
 							"var port = \"8080\";",
-							"var appContext = \"tasktrackerbackend\";",
+							"var appContext = \"projectmanagerbackend\";",
 							"var apiUrl = \"http://\" + domain + \":\" + port +\"/\" + appContext + \"/\";",
 							"",
 							"",
@@ -166,7 +166,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"taskId\": 16,\n    \"task\": \"TaskName6_updated1\",\n    \"parentId\": 107,\n    \"parentTask\": \"ParentTask5\",\n    \"startDate\": \"2018-09-08T18:30:00.000+0000\",\n    \"endDate\": \"2018-09-08T18:30:00.000+0000\",\n    \"priority\": 11\n}"
+					"raw": "{\n    \"taskId\": 34,\n    \"task\": \"TaskName16_updated1\",\n    \"parentId\": 105,\n    \"parentTask\": \"ParentTask5\",\n    \"startDate\": \"2018-09-08T18:30:00.000+0000\",\n    \"endDate\": \"2018-09-08T18:30:00.000+0000\",\n    \"priority\": 11\n}"
 				},
 				"description": ""
 			},
@@ -186,7 +186,7 @@
 							"//For Local Machine Testing",
 							"var domain = \"localhost\";",
 							"var port = \"8080\";",
-							"var appContext = \"tasktrackerbackend\";",
+							"var appContext = \"projectmanagerbackend\";",
 							"var apiUrl = \"http://\" + domain + \":\" + port +\"/\" + appContext + \"/\";",
 							"",
 							"",
@@ -226,7 +226,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"taskId\": 16,\n    \"task\": \"TaskName6_updated1\",\n    \"parentId\": 107,\n    \"parentTask\": \"ParentTask5\",\n    \"startDate\": \"2018-09-08T18:30:00.000+0000\",\n    \"endDate\": \"2018-09-08T18:30:00.000+0000\",\n    \"priority\": 11\n}"
+					"raw": "{\n    \"taskId\": 33,\n    \"task\": \"TaskName16\",\n    \"parentId\": 105,\n    \"parentTask\": \"ParentTask5\",\n    \"startDate\": \"2018-09-08T18:30:00.000+0000\",\n    \"endDate\": \"2018-09-08T18:30:00.000+0000\",\n    \"priority\": 10\n}"
 				},
 				"description": ""
 			},
@@ -246,7 +246,7 @@
 							"//For Local Machine Testing",
 							"var domain = \"localhost\";",
 							"var port = \"8080\";",
-							"var appContext = \"tasktrackerbackend\";",
+							"var appContext = \"projectmanagerbackend\";",
 							"var apiUrl = \"http://\" + domain + \":\" + port +\"/\" + appContext + \"/\";",
 							"",
 							"",
@@ -278,7 +278,7 @@
 							"//For Local Machine Testing",
 							"var domain = \"localhost\";",
 							"var port = \"8080\";",
-							"var appContext = \"tasktrackerbackend\";",
+							"var appContext = \"projectmanagerbackend\";",
 							"var apiUrl = \"http://\" + domain + \":\" + port +\"/\" + appContext + \"/\";",
 							"",
 							"",
@@ -310,7 +310,7 @@
 							"//For Local Machine Testing",
 							"var domain = \"localhost\";",
 							"var port = \"8080\";",
-							"var appContext = \"tasktrackerbackend\";",
+							"var appContext = \"projectmanagerbackend\";",
 							"var apiUrl = \"http://\" + domain + \":\" + port +\"/\" + appContext + \"/\";",
 							"",
 							"",
@@ -351,7 +351,7 @@
 							"//For Local Machine Testing",
 							"var domain = \"localhost\";",
 							"var port = \"8080\";",
-							"var appContext = \"tasktrackerbackend\";",
+							"var appContext = \"projectmanagerbackend\";",
 							"var apiUrl = \"http://\" + domain + \":\" + port +\"/\" + appContext + \"/\";",
 							"",
 							"",
@@ -411,7 +411,7 @@
 							"//For Local Machine Testing",
 							"var domain = \"localhost\";",
 							"var port = \"8080\";",
-							"var appContext = \"tasktrackerbackend\";",
+							"var appContext = \"projectmanagerbackend\";",
 							"var apiUrl = \"http://\" + domain + \":\" + port +\"/\" + appContext + \"/\";",
 							"",
 							"",

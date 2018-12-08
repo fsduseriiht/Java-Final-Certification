@@ -1,4 +1,4 @@
-package com.cts.fsd.tasktracker.repo;
+package com.cts.fsd.projectmanager.repo;
 
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -8,7 +8,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.cts.fsd.tasktracker.entity.ParentTaskEntity;
+import com.cts.fsd.projectmanager.entity.ParentTaskEntity;
 
 
 /**

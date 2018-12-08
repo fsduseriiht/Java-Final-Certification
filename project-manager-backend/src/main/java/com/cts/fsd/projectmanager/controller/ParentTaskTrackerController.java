@@ -1,4 +1,4 @@
-package com.cts.fsd.tasktracker.controller;
+package com.cts.fsd.projectmanager.controller;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,8 +13,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.cts.fsd.tasktracker.pojo.ParentTaskPOJO;
-import com.cts.fsd.tasktracker.service.ParentTaskService;
+import com.cts.fsd.projectmanager.pojo.ParentTaskPOJO;
+import com.cts.fsd.projectmanager.service.ParentTaskService;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 

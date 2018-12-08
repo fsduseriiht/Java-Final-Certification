@@ -1,11 +1,11 @@
-package com.cts.fsd.tasktracker.mapper;
+package com.cts.fsd.projectmanager.mapper;
 
 import org.springframework.stereotype.Component;
 
-import com.cts.fsd.tasktracker.entity.ParentTaskEntity;
-import com.cts.fsd.tasktracker.entity.TaskEntity;
-import com.cts.fsd.tasktracker.pojo.ParentTaskPOJO;
-import com.cts.fsd.tasktracker.pojo.TaskPOJO;
+import com.cts.fsd.projectmanager.entity.ParentTaskEntity;
+import com.cts.fsd.projectmanager.entity.TaskEntity;
+import com.cts.fsd.projectmanager.pojo.ParentTaskPOJO;
+import com.cts.fsd.projectmanager.pojo.TaskPOJO;
 
 /**
  * @author Amitabha Das [420652]

@@ -1,4 +1,4 @@
-package com.cts.fsd.tasktracker.pojo;
+package com.cts.fsd.projectmanager.pojo;
 
 import org.springframework.stereotype.Component;
 

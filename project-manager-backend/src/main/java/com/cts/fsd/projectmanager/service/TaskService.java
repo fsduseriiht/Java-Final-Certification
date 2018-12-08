@@ -1,4 +1,4 @@
-package com.cts.fsd.tasktracker.service;
+package com.cts.fsd.projectmanager.service;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -7,12 +7,12 @@ import java.util.NoSuchElementException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.cts.fsd.tasktracker.entity.ParentTaskEntity;
-import com.cts.fsd.tasktracker.entity.TaskEntity;
-import com.cts.fsd.tasktracker.exception.ResourceNotFoundException;
-import com.cts.fsd.tasktracker.mapper.TaskTrackerMapper;
-import com.cts.fsd.tasktracker.pojo.TaskPOJO;
-import com.cts.fsd.tasktracker.repo.TaskRepository;
+import com.cts.fsd.projectmanager.entity.ParentTaskEntity;
+import com.cts.fsd.projectmanager.entity.TaskEntity;
+import com.cts.fsd.projectmanager.exception.ResourceNotFoundException;
+import com.cts.fsd.projectmanager.mapper.TaskTrackerMapper;
+import com.cts.fsd.projectmanager.pojo.TaskPOJO;
+import com.cts.fsd.projectmanager.repo.TaskRepository;
 
 /**
  * @author Amitabha Das [420652]

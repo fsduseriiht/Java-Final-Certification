@@ -1,4 +1,4 @@
-package com.cts.fsd.tasktracker.entity;
+package com.cts.fsd.projectmanager.entity;
 
 import java.io.Serializable;
 

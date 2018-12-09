@@ -4,7 +4,12 @@ import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 /**
@@ -21,7 +26,7 @@ public class ParentTaskEntity implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	@Id
-//	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name = "PARENT_ID")
 	private long parentId;
 	
@@ -30,46 +35,30 @@ public class ParentTaskEntity implements Serializable {
 	private String parentTask;
 
 
-	/**
-	 * @return long
-	 */
 	public long getParentId() {
 		return parentId;
 	}
 
 
-	/**
-	 * @param parentId
-	 */
 	public void setParentId(long parentId) {
 		this.parentId = parentId;
 	}
 
 
-	/**
-	 * @return String
-	 */
 	public String getParentTask() {
 		return parentTask;
 	}
 
 
-	/**
-	 * @param parentTask
-	 */
 	public void setParentTask(String parentTask) {
 		this.parentTask = parentTask;
 	}
 
 
-	/* (non-Javadoc)
-	 * @see java.lang.Object#toString()
-	 */
 	@Override
 	public String toString() {
-		return "ParentTaskEntity [parentId=" + parentId + ", parentTask="
-				+ parentTask + "]";
+		return "ParentTaskEntity [parentId=" + parentId + ", parentTask=" + parentTask + "]";
 	}
 
-	
+
 }

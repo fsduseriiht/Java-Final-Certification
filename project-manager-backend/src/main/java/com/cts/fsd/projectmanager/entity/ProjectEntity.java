@@ -18,25 +18,25 @@ import javax.persistence.Table;
  *
  */
 @Entity
-@Table(name = "TASK_TABLE")
-public class TaskEntity implements Serializable {
+@Table(name = "PROJECT_TABLE")
+public class ProjectEntity implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	@Column(name = "TASK_ID")
-	private long taskId;
+	@Column(name = "PROJECT_ID")
+	private long projectId;
 	
-	
-	@Column(name = "TASk")
-	private String task;
-	
-	
+
+	@Column(name = "PROJECT")
+	private String project;
+
+
 	@Column(name = "START_DATE")
 	private Date startDate;
 	
-	
+
 	@Column(name = "END_DATE")
 	private Date endDate;
 	
@@ -44,38 +44,29 @@ public class TaskEntity implements Serializable {
 	@Column(name = "PRIORITY")
 	private int priority;
 	
-	@OneToOne(fetch = FetchType.LAZY) 
-	@JoinColumn(name = "PARENT_ID" )
-	private ParentTaskEntity parentTaskEntity;
-	
-	
-	@OneToOne(fetch = FetchType.LAZY) 
-	@JoinColumn(name = "PROJECT_ID" )
-	private ProjectEntity projectEntity;
-	
 	
 	@OneToOne(fetch = FetchType.LAZY) 
 	@JoinColumn(name = "USER_ID" )
 	private UserEntity userEntity;
 
 
-	public long getTaskId() {
-		return taskId;
+	public long getProjectId() {
+		return projectId;
 	}
 
 
-	public void setTaskId(long taskId) {
-		this.taskId = taskId;
+	public void setProjectId(long projectId) {
+		this.projectId = projectId;
 	}
 
 
-	public String getTask() {
-		return task;
+	public String getProject() {
+		return project;
 	}
 
 
-	public void setTask(String task) {
-		this.task = task;
+	public void setProject(String project) {
+		this.project = project;
 	}
 
 
@@ -109,26 +100,6 @@ public class TaskEntity implements Serializable {
 	}
 
 
-	public ParentTaskEntity getParentTaskEntity() {
-		return parentTaskEntity;
-	}
-
-
-	public void setParentTaskEntity(ParentTaskEntity parentTaskEntity) {
-		this.parentTaskEntity = parentTaskEntity;
-	}
-
-
-	public ProjectEntity getProjectEntity() {
-		return projectEntity;
-	}
-
-
-	public void setProjectEntity(ProjectEntity projectEntity) {
-		this.projectEntity = projectEntity;
-	}
-
-
 	public UserEntity getUserEntity() {
 		return userEntity;
 	}
@@ -141,9 +112,8 @@ public class TaskEntity implements Serializable {
 
 	@Override
 	public String toString() {
-		return "TaskEntity [taskId=" + taskId + ", task=" + task + ", startDate=" + startDate + ", endDate=" + endDate
-				+ ", priority=" + priority + ", parentTaskEntity=" + parentTaskEntity + ", projectEntity="
-				+ projectEntity + ", userEntity=" + userEntity + "]";
+		return "ProjectEntity [projectId=" + projectId + ", project=" + project + ", startDate=" + startDate
+				+ ", endDate=" + endDate + ", priority=" + priority + ", userEntity=" + userEntity + "]";
 	}
 
 }

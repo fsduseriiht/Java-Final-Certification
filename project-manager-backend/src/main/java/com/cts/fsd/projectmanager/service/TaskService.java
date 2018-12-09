@@ -8,9 +8,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.cts.fsd.projectmanager.entity.ParentTaskEntity;
+import com.cts.fsd.projectmanager.entity.ProjectEntity;
 import com.cts.fsd.projectmanager.entity.TaskEntity;
+import com.cts.fsd.projectmanager.entity.UserEntity;
 import com.cts.fsd.projectmanager.exception.ResourceNotFoundException;
-import com.cts.fsd.projectmanager.mapper.TaskTrackerMapper;
+import com.cts.fsd.projectmanager.mapper.ApplicationMapperObject;
 import com.cts.fsd.projectmanager.pojo.TaskPOJO;
 import com.cts.fsd.projectmanager.repo.TaskRepository;
 
@@ -21,23 +23,20 @@ import com.cts.fsd.projectmanager.repo.TaskRepository;
 @Service
 public class TaskService {
 	
-	/**
-	 * Object TaskTrackerMapper mapper
-	 */
 	@Autowired
-	protected TaskTrackerMapper mapper;
+	protected ApplicationMapperObject mapper;
 	
-	/**
-	 * Object TaskRepository taskRepository
-	 */
 	@Autowired
 	protected TaskRepository taskRepository;
 	
-	/**
-	 * Object ParentTaskService parentTaskService
-	 */
 	@Autowired
 	protected ParentTaskService parentTaskService;
+	
+	@Autowired
+	protected ProjectService projectService;
+	
+	@Autowired
+	protected UserService userService;
 	
 	/**
 	 * createTasks() is used to create a task record in the task table sent in the request
@@ -51,12 +50,29 @@ public class TaskService {
 		if (null != taskPOJOList && !taskPOJOList.isEmpty()) {
 			for(TaskPOJO taskPOJO :  taskPOJOList ) {
 				
-				ParentTaskEntity parentTaskEntityFromDB = parentTaskService.getParentTaskById(taskPOJO.getParentId());
+				ParentTaskEntity parentTaskEntityFromDB = null;
+				if ( taskPOJO.getParentId() >= 0 ) {
+					parentTaskEntityFromDB = parentTaskService.getParentTaskById(taskPOJO.getParentId());
+				}
 				System.out.println("parentTaskEntityFromDB = " + parentTaskEntityFromDB.toString());
+				
+				ProjectEntity projectEntityFromDB = null;
+				if ( taskPOJO.getProjectId() >= 0 ) {
+					projectEntityFromDB = projectService.getProjectById(taskPOJO.getProjectId());
+				}
+				System.out.println("projectEntityFromDB = " + projectEntityFromDB.toString());
+				
+				UserEntity userEntityFromDB = null;
+				if ( taskPOJO.getUserId() >= 0 ) {
+					userEntityFromDB = userService.getUserById(taskPOJO.getUserId());
+					System.out.println("userEntityFromDB = " + userEntityFromDB.toString());
+				}
 				
 				TaskEntity taskEntity = mapper.mapTaskPojoToEntity(taskPOJO);
 				if(taskEntity != null ) {
+					taskEntity.setProjectEntity(projectEntityFromDB);
 					taskEntity.setParentTaskEntity(parentTaskEntityFromDB);
+					taskEntity.setUserEntity(userEntityFromDB);
 				}
 				taskEntityList.add(taskEntity);
 			}
@@ -116,8 +132,8 @@ public class TaskService {
 			taskFromDB.setEndDate(new java.sql.Date(taskPOJO.getEndDate().getTime()));
 			taskFromDB.setPriority(taskPOJO.getPriority());
 			
-			ParentTaskEntity parentTaskEntityFromDB = parentTaskService.getParentTaskById(taskPOJO.getParentId());
-			taskFromDB.setParentTaskEntity(parentTaskEntityFromDB);
+//			ParentTaskEntity parentTaskEntityFromDB = parentTaskService.getParentTaskById(taskPOJO.getParentId());
+//			taskFromDB.setParentTaskEntity(parentTaskEntityFromDB);
 			
 			taskFromDB =  taskRepository.save(taskFromDB);
 			
@@ -152,7 +168,7 @@ public class TaskService {
 	 * @param taskId
 	 * @return TaskEntity
 	 */
-	private TaskEntity getTaskById(int taskId) {
+	public TaskEntity getTaskById(int taskId) {
 		TaskEntity taskFromDB = null;
 		
 		try {

@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.cts.fsd.projectmanager.entity.ParentTaskEntity;
 import com.cts.fsd.projectmanager.exception.ResourceNotFoundException;
-import com.cts.fsd.projectmanager.mapper.TaskTrackerMapper;
+import com.cts.fsd.projectmanager.mapper.ApplicationMapperObject;
 import com.cts.fsd.projectmanager.pojo.ParentTaskPOJO;
 import com.cts.fsd.projectmanager.repo.ParentTaskRepository;
 
@@ -24,7 +24,7 @@ public class ParentTaskService {
 	 * object TaskTrackerMapper mapper
 	 */
 	@Autowired
-	protected TaskTrackerMapper mapper;
+	protected ApplicationMapperObject mapper;
 	
 	/**
 	 * object ParentTaskRepository parentTaskRepository

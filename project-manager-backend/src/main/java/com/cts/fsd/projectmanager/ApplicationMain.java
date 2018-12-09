@@ -27,19 +27,21 @@ public class ApplicationMain extends ServletInitializer {
 //		System.setProperty("server.port", "8080");
 		
 //		spring.datasource properties
+//		Properties related to the MySQL Database
 		System.setProperty("spring.datasource.url", "jdbc:mysql://localhost:3306/fsd_project_manager?createDatabaseIfNotExist=true");
 		System.setProperty("spring.datasource.username", "root");
 		System.setProperty("spring.datasource.password", "admin");
 		System.setProperty("spring.datasource.driverClassName", "com.mysql.jdbc.Driver");
 		System.setProperty("spring.datasource.initialize", "true");
-		
-		/*System.setProperty("spring.datasource.url", "jdbc:h2:file:~\\tmp\\fsd_project_manager");
+//		Properties related to the H2 Database
+		/*
+		System.setProperty("spring.datasource.url", "jdbc:h2:file:~\\tmp\\fsd_project_manager");
 		System.setProperty("spring.datasource.name", "fsd_project_manager_db");
 		System.setProperty("spring.datasource.username", "SA");
 		System.setProperty("spring.datasource.password", "");
 		System.setProperty("spring.datasource.driverClassName", "org.h2.Driver");
-		System.setProperty("spring.datasource.initialize", "true");*/
-		
+		System.setProperty("spring.datasource.initialize", "true");
+		*/
 		
 //		spring.jpa properties
 		System.setProperty("spring.jpa.generate-ddl", "true");
@@ -53,6 +55,7 @@ public class ApplicationMain extends ServletInitializer {
 //		spring.h2 properties
 //		System.setProperty("spring.h2.console.enabled", "true");
 //		System.setProperty("spring.h2.console.path", "/h2-console");
-		
 	}
+	
+	
 }

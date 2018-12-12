@@ -46,12 +46,14 @@ public class UserController {
 	public ResponseEntity<String> createUserDump() {
 		
 		Gson gson = new Gson();
-		String userDump = "[{\"firstName\": \"test_firstName1\",\"lastName\": \"test_lastName1\",\"employeeId\": \"test_employeeId1\",\"projectId\": -1,\"taskId\": -1},"
-							+ "{\"firstName\": \"test_firstName2\",\"lastName\": \"test_lastName2\",\"employeeId\": \"test_employeeId2\",\"projectId\": -1,\"taskId\": -1},"
-							+ "{\"firstName\": \"test_firstName3\",\"lastName\": \"test_lastName3\",\"employeeId\": \"test_employeeId3\",\"projectId\": -1,\"taskId\": -1},"
-							+ "{\"firstName\": \"test_firstName4\",\"lastName\": \"test_lastName4\",\"employeeId\": \"test_employeeId4\",\"projectId\": -1,\"taskId\": -1},"
-							+ "{\"firstName\": \"test_firstName5\",\"lastName\": \"test_lastName5\",\"employeeId\": \"test_employeeId5\",\"projectId\": -1,\"taskId\": -1},"
-							+ "{\"firstName\": \"test_firstName6\",\"lastName\": \"test_lastName6\",\"employeeId\": \"test_employeeId6\",\"projectId\": -1,\"taskId\": -1}]";
+		String userDump = "[ "
+				+ "{\"firstName\":\"test_firstName1\",\"lastName\":\"test_lastName1\",\"employeeId\":\"test_employeeId1\"},"
+				+ "{\"firstName\":\"test_firstName2\",\"lastName\":\"test_lastName2\",\"employeeId\":\"test_employeeId2\"},"
+				+ "{\"firstName\":\"test_firstName3\",\"lastName\":\"test_lastName3\",\"employeeId\":\"test_employeeId3\"},"
+				+ "{\"firstName\":\"test_firstName4\",\"lastName\":\"test_lastName4\",\"employeeId\":\"test_employeeId4\"},"
+				+ "{\"firstName\":\"test_firstName5\",\"lastName\":\"test_lastName5\",\"employeeId\":\"test_employeeId5\"},"
+				+ "{\"firstName\":\"test_firstName6\",\"lastName\":\"test_lastName6\",\"employeeId\":\"test_employeeId6\"}"
+				+ " ]";
 		List<UserPOJO> userPOJOList = gson.fromJson(userDump, new TypeToken<List<UserPOJO>>(){}.getType());
 		
 		// display ParentTask Dump in console

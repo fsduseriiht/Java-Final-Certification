@@ -53,14 +53,16 @@ public class TaskService {
 				ParentTaskEntity parentTaskEntityFromDB = null;
 				if ( taskPOJO.getParentId() >= 0 ) {
 					parentTaskEntityFromDB = parentTaskService.getParentTaskById(taskPOJO.getParentId());
+					System.out.println("parentTaskEntityFromDB = " + parentTaskEntityFromDB.toString());
 				}
-				System.out.println("parentTaskEntityFromDB = " + parentTaskEntityFromDB.toString());
+				
 				
 				ProjectEntity projectEntityFromDB = null;
 				if ( taskPOJO.getProjectId() >= 0 ) {
 					projectEntityFromDB = projectService.getProjectById(taskPOJO.getProjectId());
+					System.out.println("projectEntityFromDB = " + projectEntityFromDB.toString());
 				}
-				System.out.println("projectEntityFromDB = " + projectEntityFromDB.toString());
+				
 				
 				UserEntity userEntityFromDB = null;
 				if ( taskPOJO.getUserId() >= 0 ) {

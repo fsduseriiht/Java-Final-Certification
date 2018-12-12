@@ -25,7 +25,7 @@ import com.google.gson.reflect.TypeToken;
 @RestController
 @RequestMapping("/task")
 @CrossOrigin("*")
-public class TaskTrackerController {
+public class TaskController {
 	
 	@Autowired
 	TaskService taskService;
@@ -38,7 +38,7 @@ public class TaskTrackerController {
 	public ResponseEntity<String> createTaskDump() {
 		Gson gson = new Gson();
 		
-		String taskDump = "[{\"taskId\":11,\"task\":\"TaskName1\",\"parentId\":101,\"parentTask\":\"ParentTaskName1\",\"startDate\":\"Sep 9, 2018 12:00:00 AM\",\"endDate\":\"Sep 9, 2018 12:00:00 AM\",\"priority\":1},{\"taskId\":12,\"task\":\"TaskName2\",\"parentId\":102,\"parentTask\":\"ParentTaskName2\",\"startDate\":\"Sep 9, 2018 12:00:00 AM\",\"endDate\":\"Sep 9, 2018 12:00:00 AM\",\"priority\":2},{\"taskId\":13,\"task\":\"TaskName3\",\"parentId\":101,\"parentTask\":\"ParentTaskName1\",\"startDate\":\"Sep 9, 2018 12:00:00 AM\",\"endDate\":\"Sep 9, 2018 12:00:00 AM\",\"priority\":3},{\"taskId\":14,\"task\":\"TaskName4\",\"parentId\":103,\"parentTask\":\"ParentTaskName3\",\"startDate\":\"Sep 9, 2018 12:00:00 AM\",\"endDate\":\"Sep 9, 2018 12:00:00 AM\",\"priority\":4},{\"taskId\":15,\"task\":\"TaskName5\",\"parentId\":105,\"parentTask\":\"ParentTaskName5\",\"startDate\":\"Sep 9, 2018 12:00:00 AM\",\"endDate\":\"Sep 9, 2018 12:00:00 AM\",\"priority\":5}]";
+		String taskDump = "[{\"task\":\"taskName2\",\"startDate\":\"2018-09-08T18:30:00.000+0000\",\"endDate\":\"2018-09-08T18:30:00.000+0000\",\"priority\":10,\"parentId\":-1,\"projectId\":36,\"userId\":3},{\"task\":\"taskName3\",\"startDate\":\"2018-09-09T18:30:00.000+0000\",\"endDate\":\"2018-09-09T18:30:00.000+0000\",\"priority\":10,\"parentId\":4,\"projectId\":37,\"userId\":3},{\"task\":\"taskName4\",\"startDate\":\"2018-09-08T18:30:00.000+0000\",\"endDate\":\"2018-09-08T18:30:00.000+0000\",\"priority\":10,\"parentId\":5,\"projectId\":36,\"userId\":3},{\"task\":\"taskName5\",\"startDate\":\"2018-09-08T18:30:00.000+0000\",\"endDate\":\"2018-09-08T18:30:00.000+0000\",\"priority\":10,\"parentId\":5,\"projectId\":37,\"userId\":6},{\"task\":\"taskName6\",\"startDate\":\"2018-09-08T18:30:00.000+0000\",\"endDate\":\"2018-09-08T18:30:00.000+0000\",\"priority\":10,\"parentId\":5,\"projectId\":37,\"userId\":6},{\"task\":\"taskName7\",\"startDate\":\"2018-09-08T18:30:00.000+0000\",\"endDate\":\"2018-09-08T18:30:00.000+0000\",\"priority\":10,\"parentId\":-1,\"projectId\":36,\"userId\":6},{\"task\":\"taskName8\",\"startDate\":\"2018-09-08T18:30:00.000+0000\",\"endDate\":\"2018-09-08T18:30:00.000+0000\",\"priority\":10,\"parentId\":-1,\"projectId\":37,\"userId\":6}]";
 		List<TaskPOJO> taskPOJOList = gson.fromJson(taskDump, new TypeToken<List<TaskPOJO>>(){}.getType());
 		
 		// display Task Dump in console

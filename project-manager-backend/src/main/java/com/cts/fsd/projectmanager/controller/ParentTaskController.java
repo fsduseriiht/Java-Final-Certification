@@ -25,7 +25,7 @@ import com.google.gson.reflect.TypeToken;
 @RestController
 @RequestMapping("/parent")
 @CrossOrigin("*")
-public class ParentTaskTrackerController {
+public class ParentTaskController {
 	
 	@Autowired
 	ParentTaskService parentTaskService;

@@ -114,7 +114,7 @@ public class ApplicationMapperObject {
 			taskPOJO.setTask(taskEntity.getTask());
 			
 			taskPOJO.setParentId((taskEntity.getParentTaskEntity() != null ? new Long(taskEntity.getParentTaskEntity().getParentId()).intValue() : 0));
-			taskPOJO.setParentTask((taskEntity.getParentTaskEntity() != null ? taskEntity.getParentTaskEntity().getParentTask() : "NULL"));
+			taskPOJO.setParentTask((taskEntity.getParentTaskEntity() != null ? taskEntity.getParentTaskEntity().getParentTask() : null));
 			taskPOJO.setUserId((taskEntity.getUserEntity() != null ? new Long(taskEntity.getUserEntity().getUserId()).intValue() : -1 ));
 			
 			taskPOJO.setStartDate(new java.util.Date(taskEntity.getStartDate().getTime()));

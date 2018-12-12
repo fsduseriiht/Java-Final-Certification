@@ -25,7 +25,7 @@ import com.google.gson.reflect.TypeToken;
 @RestController
 @RequestMapping("/project")
 @CrossOrigin("*")
-public class ProjectTrackerController {
+public class ProjectController {
 	
 	@Autowired
 	ProjectService projectService;
@@ -38,7 +38,14 @@ public class ProjectTrackerController {
 	public ResponseEntity<String> createProjectDump() {
 		
 		Gson gson = new Gson();
-		String projectDump = "[{\"parentId\":101,\"parentTask\":\"ParentTask1\"},{\"parentId\":102,\"parentTask\":\"ParentTask2\"},{\"parentId\":103,\"parentTask\":\"ParentTask3\"},{\"parentId\":104,\"parentTask\":\"ParentTask4\"},{\"parentId\":105,\"parentTask\":\"ParentTask5\"},{\"parentId\":106,\"parentTask\":\"ParentTask6\"},{\"parentId\":107,\"parentTask\":\"ParentTask7\"}]";
+		String projectDump = 
+					"[ "
+				+	 "{\"project\":\"project2\",\"startDate\":\"2018-09-08T18:30:00.000+0000\",\"endDate\":\"2018-09-08T18:30:00.000+0000\",\"priority\":2,\"userId\":2},"
+				+ 	"{\"project\":\"project3\",\"startDate\":\"2018-09-08T18:30:00.000+0000\",\"endDate\":\"2018-09-08T18:30:00.000+0000\",\"priority\":2,\"userId\":1},"
+				+ 	"{\"project\":\"project4\",\"startDate\":\"2018-09-08T18:30:00.000+0000\",\"endDate\":\"2018-09-08T18:30:00.000+0000\",\"priority\":2,\"userId\":2},"
+				+	"{\"project\":\"project5\",\"startDate\":\"2018-09-08T18:30:00.000+0000\",\"endDate\":\"2018-09-08T18:30:00.000+0000\",\"priority\":2,\"userId\":1},"
+				+ 	"{\"project\":\"project6\",\"startDate\":\"2018-09-08T18:30:00.000+0000\",\"endDate\":\"2018-09-08T18:30:00.000+0000\",\"priority\":2,\"userId\":2}"
+				+ 	"]";
 		List<ProjectPOJO> projectPOJOList = gson.fromJson(projectDump, new TypeToken<List<ProjectPOJO>>(){}.getType());
 		
 		// display ParentTask Dump in console

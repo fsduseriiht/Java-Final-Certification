@@ -7,13 +7,9 @@ import java.util.NoSuchElementException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.cts.fsd.projectmanager.entity.ParentTaskEntity;
-import com.cts.fsd.projectmanager.entity.ProjectEntity;
-import com.cts.fsd.projectmanager.entity.TaskEntity;
 import com.cts.fsd.projectmanager.entity.UserEntity;
 import com.cts.fsd.projectmanager.exception.ResourceNotFoundException;
 import com.cts.fsd.projectmanager.mapper.ApplicationMapperObject;
-import com.cts.fsd.projectmanager.pojo.TaskPOJO;
 import com.cts.fsd.projectmanager.pojo.UserPOJO;
 import com.cts.fsd.projectmanager.repo.TaskRepository;
 import com.cts.fsd.projectmanager.repo.UserRepository;

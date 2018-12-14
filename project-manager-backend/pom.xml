@@ -22,6 +22,10 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<java.version>1.8</java.version>
+		
+		<maven.compiler.source>1.8</maven.compiler.source>
+		<maven.compiler.target>1.8</maven.compiler.target>
+		<runSuite>**/AppTest.class</runSuite>
 	</properties>
 
 	<dependencies>
@@ -70,10 +74,58 @@
 
 	<build>
 		<plugins>
+		
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
+			
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<version>2.7</version>
+				<configuration>
+					<includes>
+	                    <include>${runSuite}</include>
+	                </includes>
+					<runOrder>failedfirst</runOrder>
+				</configuration>
+			</plugin>
+			
+			<plugin>
+				<groupId>org.jacoco</groupId>
+				<artifactId>jacoco-maven-plugin</artifactId>
+				<version>0.8.2</version>
+				<configuration>
+					<excludes>
+						<exclude>com/cts/fsd/projectmanager/ApplicationMain.class</exclude>
+						<exclude>com/cts/fsd/projectmanager/ServletInitializer.class</exclude>
+						<exclude>com/cts/fsd/projectmanager/controller/**/*</exclude>
+						<exclude>com/cts/fsd/projectmanager/entity/**/*</exclude>
+						<exclude>com/cts/fsd/projectmanager/exception/**/*</exclude>
+						<exclude>com/cts/fsd/projectmanager/mapper/**/*</exclude>
+						<exclude>com/cts/fsd/projectmanager/pojo/**/*</exclude>
+						<exclude>com/cts/fsd/projectmanager/repo/**/*</exclude>
+						<exclude>com/cts/fsd/projectmanager/service/**/*</exclude>
+						<exclude>com/cts/fsd/projectmanager/test/**/*</exclude>
+					</excludes>
+				</configuration>
+				<executions>
+					<execution>
+						<goals>
+							<goal>prepare-agent</goal>
+						</goals>
+					</execution>
+					<execution>
+						<id>report</id>
+						<phase>prepare-package</phase>
+						<goals>
+							<goal>report</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			
 		</plugins>
 	</build>
 

@@ -38,7 +38,16 @@ public class TaskController {
 	public ResponseEntity<String> createTaskDump() {
 		Gson gson = new Gson();
 		
-		String taskDump = "[{\"task\":\"taskName2\",\"startDate\":\"2018-09-08T18:30:00.000+0000\",\"endDate\":\"2018-09-08T18:30:00.000+0000\",\"priority\":10,\"parentId\":-1,\"projectId\":36,\"userId\":3},{\"task\":\"taskName3\",\"startDate\":\"2018-09-09T18:30:00.000+0000\",\"endDate\":\"2018-09-09T18:30:00.000+0000\",\"priority\":10,\"parentId\":4,\"projectId\":37,\"userId\":3},{\"task\":\"taskName4\",\"startDate\":\"2018-09-08T18:30:00.000+0000\",\"endDate\":\"2018-09-08T18:30:00.000+0000\",\"priority\":10,\"parentId\":5,\"projectId\":36,\"userId\":3},{\"task\":\"taskName5\",\"startDate\":\"2018-09-08T18:30:00.000+0000\",\"endDate\":\"2018-09-08T18:30:00.000+0000\",\"priority\":10,\"parentId\":5,\"projectId\":37,\"userId\":6},{\"task\":\"taskName6\",\"startDate\":\"2018-09-08T18:30:00.000+0000\",\"endDate\":\"2018-09-08T18:30:00.000+0000\",\"priority\":10,\"parentId\":5,\"projectId\":37,\"userId\":6},{\"task\":\"taskName7\",\"startDate\":\"2018-09-08T18:30:00.000+0000\",\"endDate\":\"2018-09-08T18:30:00.000+0000\",\"priority\":10,\"parentId\":-1,\"projectId\":36,\"userId\":6},{\"task\":\"taskName8\",\"startDate\":\"2018-09-08T18:30:00.000+0000\",\"endDate\":\"2018-09-08T18:30:00.000+0000\",\"priority\":10,\"parentId\":-1,\"projectId\":37,\"userId\":6}]";
+		String taskDump = "["
+		+ "{\"task\":\"taskName1\",\"startDate\":\"2018-09-08T18:30:00.000+0000\",\"endDate\":\"2018-09-08T18:30:00.000+0000\",\"priority\":11,\"parentId\":-1,\"projectId\":1,\"userId\":3},"
+		+ "{\"task\":\"taskName2\",\"startDate\":\"2018-09-08T18:30:00.000+0000\",\"endDate\":\"2018-09-08T18:30:00.000+0000\",\"priority\":12,\"parentId\":-1,\"projectId\":2,\"userId\":3},"
+		+ "{\"task\":\"taskName3\",\"startDate\":\"2018-09-09T18:30:00.000+0000\",\"endDate\":\"2018-09-09T18:30:00.000+0000\",\"priority\":10,\"parentId\":1,\"projectId\":2,\"userId\":3},"
+		+ "{\"task\":\"taskName4\",\"startDate\":\"2018-09-08T18:30:00.000+0000\",\"endDate\":\"2018-09-08T18:30:00.000+0000\",\"priority\":10,\"parentId\":2,\"projectId\":1,\"userId\":3},"
+		+ "{\"task\":\"taskName5\",\"startDate\":\"2018-09-08T18:30:00.000+0000\",\"endDate\":\"2018-09-08T18:30:00.000+0000\",\"priority\":1,\"parentId\":5,\"projectId\":4,\"userId\":6},"
+		+ "{\"task\":\"taskName6\",\"startDate\":\"2018-09-08T18:30:00.000+0000\",\"endDate\":\"2018-09-08T18:30:00.000+0000\",\"priority\":20,\"parentId\":5,\"projectId\":1,\"userId\":6},"
+		+ "{\"task\":\"taskName7\",\"startDate\":\"2018-09-08T18:30:00.000+0000\",\"endDate\":\"2018-09-08T18:30:00.000+0000\",\"priority\":10,\"parentId\":-1,\"projectId\":2,\"userId\":6},"
+		+ "{\"task\":\"taskName8\",\"startDate\":\"2018-09-08T18:30:00.000+0000\",\"endDate\":\"2018-09-08T18:30:00.000+0000\",\"priority\":11,\"parentId\":-1,\"projectId\":-1,\"userId\":6}"
+						+ "]";
 		List<TaskPOJO> taskPOJOList = gson.fromJson(taskDump, new TypeToken<List<TaskPOJO>>(){}.getType());
 		
 		// display Task Dump in console

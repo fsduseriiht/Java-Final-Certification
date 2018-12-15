@@ -40,11 +40,12 @@ public class ProjectController {
 		Gson gson = new Gson();
 		String projectDump = 
 					"[ "
-				+	 "{\"project\":\"project2\",\"startDate\":\"2018-09-08T18:30:00.000+0000\",\"endDate\":\"2018-09-08T18:30:00.000+0000\",\"priority\":2,\"userId\":2},"
-				+ 	"{\"project\":\"project3\",\"startDate\":\"2018-09-08T18:30:00.000+0000\",\"endDate\":\"2018-09-08T18:30:00.000+0000\",\"priority\":2,\"userId\":1},"
-				+ 	"{\"project\":\"project4\",\"startDate\":\"2018-09-08T18:30:00.000+0000\",\"endDate\":\"2018-09-08T18:30:00.000+0000\",\"priority\":2,\"userId\":2},"
-				+	"{\"project\":\"project5\",\"startDate\":\"2018-09-08T18:30:00.000+0000\",\"endDate\":\"2018-09-08T18:30:00.000+0000\",\"priority\":2,\"userId\":1},"
-				+ 	"{\"project\":\"project6\",\"startDate\":\"2018-09-08T18:30:00.000+0000\",\"endDate\":\"2018-09-08T18:30:00.000+0000\",\"priority\":2,\"userId\":2}"
+				+	"{\"project\":\"project1\",\"startDate\":\"2018-09-08T18:30:00.000+0000\",\"endDate\":\"2018-09-08T18:30:00.000+0000\",\"priority\":1,\"userId\":2},"
+				+	"{\"project\":\"project2\",\"startDate\":\"2018-09-08T18:30:00.000+0000\",\"endDate\":\"2018-09-08T18:30:00.000+0000\",\"priority\":2,\"userId\":2},"
+				+ 	"{\"project\":\"project3\",\"startDate\":\"2018-09-08T18:30:00.000+0000\",\"endDate\":\"2018-09-08T18:30:00.000+0000\",\"priority\":3,\"userId\":1},"
+				+ 	"{\"project\":\"project4\",\"startDate\":\"2018-09-08T18:30:00.000+0000\",\"endDate\":\"2018-09-08T18:30:00.000+0000\",\"priority\":3,\"userId\":2},"
+				+	"{\"project\":\"project5\",\"startDate\":\"2018-09-08T18:30:00.000+0000\",\"endDate\":\"2018-09-08T18:30:00.000+0000\",\"priority\":5,\"userId\":1},"
+				+ 	"{\"project\":\"project6\",\"startDate\":\"2018-09-08T18:30:00.000+0000\",\"endDate\":\"2018-09-08T18:30:00.000+0000\",\"priority\":10,\"userId\":2}"
 				+ 	"]";
 		List<ProjectPOJO> projectPOJOList = gson.fromJson(projectDump, new TypeToken<List<ProjectPOJO>>(){}.getType());
 		

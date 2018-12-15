@@ -39,7 +39,15 @@ public class ParentTaskController {
 	public ResponseEntity<String> createParentTaskDump() {
 		
 		Gson gson = new Gson();
-		String parentTaskDump = "[{\"parentId\":101,\"parentTask\":\"ParentTask1\"},{\"parentId\":102,\"parentTask\":\"ParentTask2\"},{\"parentId\":103,\"parentTask\":\"ParentTask3\"},{\"parentId\":104,\"parentTask\":\"ParentTask4\"},{\"parentId\":105,\"parentTask\":\"ParentTask5\"},{\"parentId\":106,\"parentTask\":\"ParentTask6\"},{\"parentId\":107,\"parentTask\":\"ParentTask7\"}]";
+		String parentTaskDump = "["
+				+ "{\"parentId\":101,\"parentTask\":\"ParentTask1\"},"
+				+ "{\"parentId\":102,\"parentTask\":\"ParentTask2\"},"
+				+ "{\"parentId\":103,\"parentTask\":\"ParentTask3\"},"
+				+ "{\"parentId\":104,\"parentTask\":\"ParentTask4\"},"
+				+ "{\"parentId\":105,\"parentTask\":\"ParentTask5\"},"
+				+ "{\"parentId\":106,\"parentTask\":\"ParentTask6\"},"
+				+ "{\"parentId\":107,\"parentTask\":\"ParentTask7\"}"
+				+ "]";
 		List<ParentTaskPOJO> parentTaskPOJOList = gson.fromJson(parentTaskDump, new TypeToken<List<ParentTaskPOJO>>(){}.getType());
 		
 		// display ParentTask Dump in console

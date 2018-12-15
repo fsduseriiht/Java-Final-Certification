@@ -28,27 +28,27 @@ public class ApplicationMain extends ServletInitializer {
 		
 //		spring.datasource properties
 //		Properties related to the MySQL Database
-		/*System.setProperty("spring.datasource.url", "jdbc:mysql://localhost:3306/fsd_project_manager?createDatabaseIfNotExist=true");
+		System.setProperty("spring.datasource.url", "jdbc:mysql://localhost:3306/fsd_project_manager?createDatabaseIfNotExist=true");
 		System.setProperty("spring.datasource.username", "root");
 		System.setProperty("spring.datasource.password", "admin");
 		System.setProperty("spring.datasource.driverClassName", "com.mysql.jdbc.Driver");
-		System.setProperty("spring.datasource.initialize", "true");*/
+		System.setProperty("spring.datasource.initialize", "true");
 //		Properties related to the H2 Database
-		System.setProperty("spring.datasource.url", "jdbc:h2:file:~\\tmp\\fsd_project_manager");
+		/*System.setProperty("spring.datasource.url", "jdbc:h2:file:~\\tmp\\fsd_project_manager");
 		System.setProperty("spring.datasource.name", "fsd_project_manager");
 		System.setProperty("spring.datasource.username", "SA");
 		System.setProperty("spring.datasource.password", "");
 		System.setProperty("spring.datasource.driverClassName", "org.h2.Driver");
-		System.setProperty("spring.datasource.initialize", "true");
+		System.setProperty("spring.datasource.initialize", "true");*/
 		
 		
 //		spring.jpa properties
 		System.setProperty("spring.jpa.generate-ddl", "true");
 		System.setProperty("spring.jpa.hibernate.ddl-auto", "update");
-//		System.setProperty("spring.jpa.database-platform", "org.hibernate.dialect.MySQLDialect");
-//		System.setProperty("spring.jpa.properties.hibernate.dialect", "org.hibernate.dialect.MySQLDialect");
-		System.setProperty("spring.jpa.database-platform", "org.hibernate.dialect.H2Dialect");
-		System.setProperty("spring.jpa.properties.hibernate.dialect", "org.hibernate.dialect.H2Dialect");
+		System.setProperty("spring.jpa.database-platform", "org.hibernate.dialect.MySQLDialect");
+		System.setProperty("spring.jpa.properties.hibernate.dialect", "org.hibernate.dialect.MySQLDialect");
+//		System.setProperty("spring.jpa.database-platform", "org.hibernate.dialect.H2Dialect");
+//		System.setProperty("spring.jpa.properties.hibernate.dialect", "org.hibernate.dialect.H2Dialect");
 		System.setProperty("spring.jpa.show-sql", "true");
 		
 //		spring.h2 properties

@@ -3,6 +3,7 @@ package com.cts.fsd.projectmanager;
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 
+import com.cts.fsd.projectmanager.mapper.ApplicationMapperObjectTest;
 import com.cts.fsd.projectmanager.repo.ParentTaskRepositoryTest;
 import com.cts.fsd.projectmanager.repo.ProjectRepositoryTest;
 import com.cts.fsd.projectmanager.repo.TaskRepositoryTest;
@@ -21,7 +22,8 @@ import com.cts.fsd.projectmanager.service.UserServiceTest;
 	UserServiceTest.class,
 	ProjectServiceTest.class,
 	TaskServiceTest.class,
-	ParentTaskServiceTest.class
+	ParentTaskServiceTest.class,
+	ApplicationMapperObjectTest.class
 })
 public class AppTest {
 

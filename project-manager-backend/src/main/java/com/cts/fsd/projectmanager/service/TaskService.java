@@ -198,7 +198,151 @@ public class TaskService {
 		System.out.println("After Task Update :: " + editResponse);
 		return returnPOJO;
 	}
-
+	
+	
+	/**
+	 * editTaskByIdUserDelete() is used to update a task record in db for a particular task id
+	 * @param taskId
+	 * @param taskPOJO
+	 * @return TaskPOJO
+	 */
+	public TaskPOJO editTaskByIdUserDelete(int taskId, TaskPOJO taskPOJO) {
+		String editResponse = "";
+		TaskEntity taskFromDB = null ;
+		TaskPOJO returnPOJO = null;
+		try {
+			taskFromDB = getTaskById(taskId);
+			System.out.println("Updating taskFromDB = " + taskFromDB.toString());
+			
+			taskFromDB.setTask(taskPOJO.getTask());
+			taskFromDB.setStartDate(new java.sql.Date(taskPOJO.getStartDate().getTime()));
+			taskFromDB.setEndDate(new java.sql.Date(taskPOJO.getEndDate().getTime()));
+			taskFromDB.setPriority(taskPOJO.getPriority());
+			
+			taskFromDB.setUserEntity(null);
+			
+			taskFromDB =  taskRepository.save(taskFromDB);
+			
+			editResponse = "Task ID("+taskId+") updated, " + taskFromDB.toString();
+			
+			returnPOJO = mapper.mapTaskEntityToPojo(taskFromDB);
+			
+		} catch(ResourceNotFoundException e ) {
+			System.out.println("ResourceNotFoundException encountered..." + e);
+			
+			if(e.getResourceName().equals("ParentTaskEntity")) {
+				editResponse = "Things are not updated as ParentTaskEntity record does not exist... ";
+			} else {
+				editResponse = "Things are not updated as record does not exist... ";
+			}
+			
+			taskFromDB = null;
+			returnPOJO = null;
+		} catch(Exception e ) {
+			System.out.println("Exception encountered..." + e);
+			editResponse = "Things are not updated due to Exception... " + e.getMessage();
+			taskFromDB = null;
+			returnPOJO = null;
+		}
+		System.out.println("After Task Update :: " + editResponse);
+		return returnPOJO;
+	}
+	
+	/**
+	 * editTaskByIdParentTaskDelete() is used to update a task record in db for a particular task id
+	 * @param taskId
+	 * @param taskPOJO
+	 * @return TaskPOJO
+	 */
+	public TaskPOJO editTaskByIdParentTaskDelete(int taskId, TaskPOJO taskPOJO) {
+		String editResponse = "";
+		TaskEntity taskFromDB = null ;
+		TaskPOJO returnPOJO = null;
+		try {
+			taskFromDB = getTaskById(taskId);
+			System.out.println("Updating taskFromDB = " + taskFromDB.toString());
+			
+			taskFromDB.setTask(taskPOJO.getTask());
+			taskFromDB.setStartDate(new java.sql.Date(taskPOJO.getStartDate().getTime()));
+			taskFromDB.setEndDate(new java.sql.Date(taskPOJO.getEndDate().getTime()));
+			taskFromDB.setPriority(taskPOJO.getPriority());
+			
+			taskFromDB.setParentTaskEntity(null);
+			
+			taskFromDB =  taskRepository.save(taskFromDB);
+			
+			editResponse = "Task ID("+taskId+") updated, " + taskFromDB.toString();
+			
+			returnPOJO = mapper.mapTaskEntityToPojo(taskFromDB);
+			
+		} catch(ResourceNotFoundException e ) {
+			System.out.println("ResourceNotFoundException encountered..." + e);
+			
+			if(e.getResourceName().equals("ParentTaskEntity")) {
+				editResponse = "Things are not updated as ParentTaskEntity record does not exist... ";
+			} else {
+				editResponse = "Things are not updated as record does not exist... ";
+			}
+			
+			taskFromDB = null;
+			returnPOJO = null;
+		} catch(Exception e ) {
+			System.out.println("Exception encountered..." + e);
+			editResponse = "Things are not updated due to Exception... " + e.getMessage();
+			taskFromDB = null;
+			returnPOJO = null;
+		}
+		System.out.println("After Task Update :: " + editResponse);
+		return returnPOJO;
+	}
+	
+	/**
+	 * editTaskByIdParentTaskDelete() is used to update a task record in db for a particular task id
+	 * @param taskId
+	 * @param taskPOJO
+	 * @return TaskPOJO
+	 */
+	public TaskPOJO editTaskByIdProjectDelete(int taskId, TaskPOJO taskPOJO) {
+		String editResponse = "";
+		TaskEntity taskFromDB = null ;
+		TaskPOJO returnPOJO = null;
+		try {
+			taskFromDB = getTaskById(taskId);
+			System.out.println("Updating taskFromDB = " + taskFromDB.toString());
+			
+			taskFromDB.setTask(taskPOJO.getTask());
+			taskFromDB.setStartDate(new java.sql.Date(taskPOJO.getStartDate().getTime()));
+			taskFromDB.setEndDate(new java.sql.Date(taskPOJO.getEndDate().getTime()));
+			taskFromDB.setPriority(taskPOJO.getPriority());
+			
+			taskFromDB.setProjectEntity(null);
+			
+			taskFromDB =  taskRepository.save(taskFromDB);
+			
+			editResponse = "Task ID("+taskId+") updated, " + taskFromDB.toString();
+			
+			returnPOJO = mapper.mapTaskEntityToPojo(taskFromDB);
+			
+		} catch(ResourceNotFoundException e ) {
+			System.out.println("ResourceNotFoundException encountered..." + e);
+			
+			if(e.getResourceName().equals("ParentTaskEntity")) {
+				editResponse = "Things are not updated as ParentTaskEntity record does not exist... ";
+			} else {
+				editResponse = "Things are not updated as record does not exist... ";
+			}
+			
+			taskFromDB = null;
+			returnPOJO = null;
+		} catch(Exception e ) {
+			System.out.println("Exception encountered..." + e);
+			editResponse = "Things are not updated due to Exception... " + e.getMessage();
+			taskFromDB = null;
+			returnPOJO = null;
+		}
+		System.out.println("After Task Update :: " + editResponse);
+		return returnPOJO;
+	}
 
 	/**
 	 * getTaskById() is used to get a record from the db based on the task id

@@ -7,13 +7,12 @@ import java.util.NoSuchElementException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.cts.fsd.projectmanager.entity.ParentTaskEntity;
 import com.cts.fsd.projectmanager.entity.ProjectEntity;
 import com.cts.fsd.projectmanager.entity.UserEntity;
 import com.cts.fsd.projectmanager.exception.ResourceNotFoundException;
 import com.cts.fsd.projectmanager.mapper.ApplicationMapperObject;
-import com.cts.fsd.projectmanager.pojo.ParentTaskPOJO;
 import com.cts.fsd.projectmanager.pojo.ProjectPOJO;
+import com.cts.fsd.projectmanager.pojo.TaskPOJO;
 import com.cts.fsd.projectmanager.repo.ParentTaskRepository;
 import com.cts.fsd.projectmanager.repo.ProjectRepository;
 
@@ -35,6 +34,9 @@ public class ProjectService {
 	
 	@Autowired
 	protected UserService userService;
+	
+	@Autowired
+	protected TaskService taskService;
 	
 
 	/**
@@ -157,7 +159,7 @@ public class ProjectService {
 	
 	
 	/**
-	 * editParentTaskById() is used to update a parent task in db
+	 * editProjectById() is used to update a parent task in db
 	 * @param projectId
 	 * @param projectPOJO
 	 * @return ParentTaskPOJO
@@ -168,12 +170,52 @@ public class ProjectService {
 		ProjectPOJO returnPOJO = null;
 		try {
 			projectFromDB =  getProjectById(projectId);
-			System.out.println("Updating projectFromDB = " + projectFromDB.toString());
+			System.out.println("Updating projectFromDB = " + projectFromDB.toString());			
 			
 			projectFromDB.setProject(projectPOJO.getProject());
 			projectFromDB.setStartDate(new java.sql.Date(projectPOJO.getStartDate().getTime()));
 			projectFromDB.setEndDate(new java.sql.Date(projectPOJO.getEndDate().getTime()));
 			projectFromDB.setPriority(projectPOJO.getPriority());
+			
+			projectFromDB =  projectRepository.save(projectFromDB);
+			editResponse = "Project ID("+projectId+") updated, " + projectFromDB.toString();
+			
+			returnPOJO = mapper.mapProjectEntityToPojo(projectFromDB);
+		} catch(ResourceNotFoundException e ) {
+			System.out.println("ResourceNotFoundException encountered..." + e);
+			editResponse = "Things are not updated as record does not exist... ";
+			projectFromDB = null;
+			returnPOJO = null;
+		} catch(Exception e ) {
+			System.out.println("Exception encountered..." + e);
+			editResponse = "Things are not updated due to Exception... " + e.getMessage();
+			projectFromDB = null;
+			returnPOJO = null;
+		}
+		System.out.println("After Project Update :: " + editResponse);
+		
+		return returnPOJO;
+	}
+	/**
+	 * editProjectByIdUserDelete() is used to update a parent task in db while user is deleted
+	 * @param projectId
+	 * @param projectPOJO
+	 * @return ParentTaskPOJO
+	 */
+	public ProjectPOJO editProjectByIdUserDelete(int projectId , ProjectPOJO projectPOJO){
+		String editResponse = "";
+		ProjectEntity projectFromDB = null ;
+		ProjectPOJO returnPOJO = null;
+		try {
+			projectFromDB =  getProjectById(projectId);
+			System.out.println("Updating projectFromDB = " + projectFromDB.toString());			
+			
+			projectFromDB.setProject(projectPOJO.getProject());
+			projectFromDB.setStartDate(new java.sql.Date(projectPOJO.getStartDate().getTime()));
+			projectFromDB.setEndDate(new java.sql.Date(projectPOJO.getEndDate().getTime()));
+			projectFromDB.setPriority(projectPOJO.getPriority());
+			
+			projectFromDB.setUserEntity(null);
 			
 			projectFromDB =  projectRepository.save(projectFromDB);
 			editResponse = "Project ID("+projectId+") updated, " + projectFromDB.toString();
@@ -208,6 +250,16 @@ public class ProjectService {
 		try {
 			projectFromDB =  getProjectById(projectId);
 			System.out.println("Deleting projectFromDB = " + projectFromDB.toString());
+			
+			// Update the TASK Table With NULL Project ID 
+			List<TaskPOJO> taskPOJOList = taskService.getAllTasks();
+			for(TaskPOJO taskPOJO : taskPOJOList) {
+				if(new Long(taskPOJO.getProjectId()).equals(Long.valueOf(projectFromDB.getProjectId()))) {
+					taskPOJO.setProjectId(-1);
+					taskService.editTaskByIdProjectDelete(taskPOJO.getTaskId(), taskPOJO);
+				}
+			}
+			
 			projectRepository.deleteProjectById(Long.valueOf(projectFromDB.getProjectId()));
 			deleteResponse = "Project ID("+projectId+") Deleted, Record No More exists,";
 			returnResponse = true;

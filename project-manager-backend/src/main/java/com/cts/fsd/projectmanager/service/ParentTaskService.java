@@ -11,6 +11,7 @@ import com.cts.fsd.projectmanager.entity.ParentTaskEntity;
 import com.cts.fsd.projectmanager.exception.ResourceNotFoundException;
 import com.cts.fsd.projectmanager.mapper.ApplicationMapperObject;
 import com.cts.fsd.projectmanager.pojo.ParentTaskPOJO;
+import com.cts.fsd.projectmanager.pojo.TaskPOJO;
 import com.cts.fsd.projectmanager.repo.ParentTaskRepository;
 
 /**
@@ -25,6 +26,9 @@ public class ParentTaskService {
 	
 	@Autowired
 	protected ParentTaskRepository parentTaskRepository;
+	
+	@Autowired
+	protected TaskService taskService;
 	
 	
 	/**
@@ -151,8 +155,18 @@ public class ParentTaskService {
 		try {
 			parentTaskFromDB =  getParentTaskById(parentId);
 			System.out.println("Deleting parentTaskFromDB = " + parentTaskFromDB.toString());
+			
+			// Update the TASK Table With NULL Project ID 
+			List<TaskPOJO> taskPOJOList = taskService.getAllTasks();
+			for(TaskPOJO taskPOJO : taskPOJOList) {
+				if(new Long(taskPOJO.getParentId()).equals(Long.valueOf(parentTaskFromDB.getParentId()))) {
+					taskPOJO.setParentId(-1);
+					taskService.editTaskByIdParentTaskDelete(taskPOJO.getTaskId(), taskPOJO);
+				}
+			}
+			
 			parentTaskRepository.deleteParentTaskById(Long.valueOf(parentTaskFromDB.getParentId()));
-			deleteResponse = "ParentTask ID("+parentId+") Deleted, Record No More exists,";
+			deleteResponse = "ParentTask ID("+parentId+") Deleted, Record No More exists, corresponding tables are updated...";
 			returnResponse = true;
 		} catch (ResourceNotFoundException e ) {
 			System.out.println("ResourceNotFoundException encountered..." + e);

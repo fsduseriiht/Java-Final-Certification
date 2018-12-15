@@ -10,6 +10,8 @@ import org.springframework.stereotype.Service;
 import com.cts.fsd.projectmanager.entity.UserEntity;
 import com.cts.fsd.projectmanager.exception.ResourceNotFoundException;
 import com.cts.fsd.projectmanager.mapper.ApplicationMapperObject;
+import com.cts.fsd.projectmanager.pojo.ProjectPOJO;
+import com.cts.fsd.projectmanager.pojo.TaskPOJO;
 import com.cts.fsd.projectmanager.pojo.UserPOJO;
 import com.cts.fsd.projectmanager.repo.TaskRepository;
 import com.cts.fsd.projectmanager.repo.UserRepository;
@@ -176,8 +178,28 @@ public class UserService {
 			userFromDB =  getUserById(userId);
 			System.out.println("Deleting userFromDB = " + userFromDB.toString());
 			
+			
+			// Update the PROJECT Table With NULL Project ID 
+			List<ProjectPOJO> projectPOJOList = projectService.getAllProjects();
+			for(ProjectPOJO projectPOJO : projectPOJOList) {
+				if(new Long(projectPOJO.getUserId()).equals(Long.valueOf(userFromDB.getUserId()))) {
+					projectPOJO.setUserId(-1);
+					projectService.editProjectByIdUserDelete(projectPOJO.getProjectId(), projectPOJO);
+				}
+			}
+			
+			// Update the TASK Table With NULL Project ID
+			List<TaskPOJO> taskFromDBList = taskService.getAllTasks();
+			for(TaskPOJO taskPOJO : taskFromDBList) {
+				if(new Long(taskPOJO.getUserId()).equals(Long.valueOf(userFromDB.getUserId()))) {
+					taskPOJO.setUserId(-1);
+					taskService.editTaskByIdUserDelete(taskPOJO.getTaskId(), taskPOJO);
+				}
+			}
+			
 			userRepository.deleteUserById(Long.valueOf(userFromDB.getUserId()));
-			deleteResponse = "User ID("+userId+") Deleted, Record No More exists,";
+			
+			deleteResponse = "User ID("+userId+") Deleted, Record No More exists, corresponding tables are updated...";
 			returnResponse = true;
 			
 		} catch (ResourceNotFoundException e ) {

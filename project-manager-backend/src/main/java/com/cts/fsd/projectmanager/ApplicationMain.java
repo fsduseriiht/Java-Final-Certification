@@ -45,6 +45,8 @@ public class ApplicationMain extends ServletInitializer {
 //		spring.jpa properties
 		System.setProperty("spring.jpa.generate-ddl", "true");
 		System.setProperty("spring.jpa.hibernate.ddl-auto", "update");
+//		System.setProperty("spring.jpa.database-platform", "org.hibernate.dialect.MySQL5Dialect");
+//		System.setProperty("spring.jpa.properties.hibernate.dialect", "org.hibernate.dialect.MySQL5Dialect");
 		System.setProperty("spring.jpa.database-platform", "org.hibernate.dialect.MySQLDialect");
 		System.setProperty("spring.jpa.properties.hibernate.dialect", "org.hibernate.dialect.MySQLDialect");
 //		System.setProperty("spring.jpa.database-platform", "org.hibernate.dialect.H2Dialect");

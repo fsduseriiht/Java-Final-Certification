@@ -20,15 +20,9 @@ import com.cts.fsd.projectmanager.repo.ParentTaskRepository;
 @Service
 public class ParentTaskService {
 	
-	/**
-	 * object TaskTrackerMapper mapper
-	 */
 	@Autowired
 	protected ApplicationMapperObject mapper;
 	
-	/**
-	 * object ParentTaskRepository parentTaskRepository
-	 */
 	@Autowired
 	protected ParentTaskRepository parentTaskRepository;
 	
@@ -51,9 +45,9 @@ public class ParentTaskService {
 		}
 		System.out.println("Before Save parentTaskEntityList = " + parentTaskEntityList.toString());
 		List<ParentTaskEntity> dbResponse = parentTaskRepository.saveAll(parentTaskEntityList);
-		System.out.println("createParentTasks() dbResponse = " + dbResponse.toString());
 		
 		if (null != dbResponse && !dbResponse.isEmpty()) {
+			System.out.println("createParentTasks() dbResponse = " + dbResponse.toString());
 			for(ParentTaskEntity parentTaskEntity :  dbResponse ) {
 				ParentTaskPOJO parentTaskPOJO = mapper.mapParentTaskEntityToPojo(parentTaskEntity);
 				returnPojoList.add(parentTaskPOJO);

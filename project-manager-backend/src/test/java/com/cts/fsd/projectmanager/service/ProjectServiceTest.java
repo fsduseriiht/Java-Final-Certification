@@ -23,8 +23,6 @@ import com.cts.fsd.projectmanager.repo.ParentTaskRepository;
 import com.cts.fsd.projectmanager.repo.ProjectRepository;
 
 
-
-
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class ProjectServiceTest {
@@ -528,7 +526,7 @@ public class ProjectServiceTest {
 		Mockito
 			.doNothing()
 			.when(projectRepository)
-			.deleteProjectById(Long.valueOf(projectEntityFromDB.getProjectId()));
+			.deleteProjectById(Matchers.anyLong());
 		
 		
 		boolean result = projectService.removeProjectById(projectId);

@@ -83,9 +83,10 @@ public class TaskService {
 		}
 		
 		List<TaskEntity> dbResponse = taskRepository.saveAll(taskEntityList);
-		System.out.println("createTaskDump() dbResponse = " + dbResponse);
+		
 		
 		if (null != dbResponse && !dbResponse.isEmpty()) {
+			System.out.println("createTaskDump() dbResponse = " + dbResponse);
 			for(TaskEntity taskEntity :  dbResponse ) {
 				TaskPOJO taskPOJO = mapper.mapTaskEntityToPojo(taskEntity);
 				returnPojoList.add(taskPOJO);
@@ -134,7 +135,6 @@ public class TaskService {
 	}
 	
 	public List<TaskPOJO> getAllTasks(int projectId) {
-//		List<TaskEntity> dbResponse = taskRepository.findAll();
 		List<TaskEntity> dbResponse = taskRepository.listTaskByProjectId(new Long(projectId));
 		System.out.println("getAllTasks("+projectId+") dbResponse = " + dbResponse);
 		

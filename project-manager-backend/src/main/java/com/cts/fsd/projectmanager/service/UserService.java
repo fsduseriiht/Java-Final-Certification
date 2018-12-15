@@ -16,7 +16,7 @@ import com.cts.fsd.projectmanager.repo.UserRepository;
 
 /**
  * @author Amitabha Das [420652]
- * TaskService interacts between the controller and the datasources using jpa repository
+ * UserService interacts between the controller and the datasources using jpa repository
  */
 @Service
 public class UserService {
@@ -58,9 +58,10 @@ public class UserService {
 		}
 		
 		List<UserEntity> dbResponse = userRepository.saveAll(userEntityList);
-		System.out.println("createUsers() dbResponse = " + dbResponse);
+		
 		
 		if (null != dbResponse && !dbResponse.isEmpty()) {
+			System.out.println("createUsers() dbResponse = " + dbResponse);
 			for(UserEntity userEntity :  dbResponse ) {
 				UserPOJO userPOJO = mapper.mapUserEntityToPojo(userEntity);
 				returnPojoList.add(userPOJO);

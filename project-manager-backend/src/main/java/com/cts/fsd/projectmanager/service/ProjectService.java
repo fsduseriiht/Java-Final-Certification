@@ -19,7 +19,7 @@ import com.cts.fsd.projectmanager.repo.ProjectRepository;
 
 /**
  * @author Amitabha Das [420652]
- * ParentTaskService interacts between the controller and the datasources using jpa repository
+ * ProjectService interacts between the controller and the datasources using jpa repository
  */
 @Service
 public class ProjectService {

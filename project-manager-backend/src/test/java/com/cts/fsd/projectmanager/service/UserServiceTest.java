@@ -1,6 +1,7 @@
 package com.cts.fsd.projectmanager.service;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -16,6 +17,8 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import com.cts.fsd.projectmanager.entity.UserEntity;
 import com.cts.fsd.projectmanager.mapper.ApplicationMapperObject;
+import com.cts.fsd.projectmanager.pojo.ProjectPOJO;
+import com.cts.fsd.projectmanager.pojo.TaskPOJO;
 import com.cts.fsd.projectmanager.pojo.UserPOJO;
 import com.cts.fsd.projectmanager.repo.TaskRepository;
 import com.cts.fsd.projectmanager.repo.UserRepository;
@@ -298,22 +301,70 @@ public class UserServiceTest {
 	@Test
 	public void testRemoveUserById() {
 		
-		int userId = 333;
+		int userId = 1;
+		int projectId = 1;
+		int parentId = 1;
+		int taskId = 1;
+		
 		UserEntity userFromDB = new UserEntity();
-		userFromDB.setUserId(1);
+		userFromDB.setUserId(Long.valueOf(userId));
 		userFromDB.setFirstName("firstName");
 		userFromDB.setLastName("lastName");
 		userFromDB.setEmployeeId("employeeId");
 		
+		
 		Optional<UserEntity> optional = Optional.of(userFromDB);
 		
 		Mockito.when(userRepository.findById(Long.valueOf(userId))).thenReturn(optional);
+		
+		UserPOJO userPOJO = new UserPOJO();
+		userPOJO.setUserId(1);
+		userPOJO.setFirstName("fake_firstName");
+		userPOJO.setLastName("fake_lastName");
+		userPOJO.setEmployeeId("fake_employeeId");
+		
+		List<ProjectPOJO> projectPOJOList = new ArrayList<ProjectPOJO>();
+		
+		
+		ProjectPOJO projectPOJO = new ProjectPOJO();
+		projectPOJO.setProjectId(projectId);
+		projectPOJO.setProject("fake_project");
+		projectPOJO.setStartDate(new Date());
+		projectPOJO.setEndDate(new Date());
+		projectPOJO.setPriority(10);
+		projectPOJO.setUserId(userId);
+		
+		projectPOJOList.add(projectPOJO);
+		
+		Mockito.when(projectService.getAllProjects()).thenReturn(projectPOJOList);
+		
+		Mockito.when(projectService.editProjectByIdUserDelete(projectPOJO.getProjectId() , projectPOJO)).thenReturn(projectPOJO);
+		
+		List<TaskPOJO> taskFromDBList = new ArrayList<TaskPOJO>();
+		
+		TaskPOJO taskPOJO = new TaskPOJO();
+		taskPOJO.setTaskId(taskId);
+		taskPOJO.setTask("fake_task");
+		taskPOJO.setStartDate(new Date());
+		taskPOJO.setEndDate(new Date());
+		taskPOJO.setPriority(10);
+		taskPOJO.setParentId(parentId);
+		taskPOJO.setProjectId(projectId);
+		taskPOJO.setUserId(userId);
+		
+		taskFromDBList.add(taskPOJO);
+		
+		Mockito.when(taskService.getAllTasks()).thenReturn(taskFromDBList);
+		
+		Mockito.when(taskService.editTaskByIdUserDelete(taskPOJO.getTaskId() , taskPOJO)).thenReturn(taskPOJO);
+		
 		
 		UserEntity userFromDB_updated = new UserEntity();
 		userFromDB_updated.setUserId(1);
 		userFromDB_updated.setFirstName("fake_firstName");
 		userFromDB_updated.setLastName("fake_lastName");
 		userFromDB_updated.setEmployeeId("fake_employeeId");
+		
 		Mockito
 			.doNothing()
 			.when(userRepository)

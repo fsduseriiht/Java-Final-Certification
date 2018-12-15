@@ -19,6 +19,7 @@ import com.cts.fsd.projectmanager.entity.ProjectEntity;
 import com.cts.fsd.projectmanager.entity.UserEntity;
 import com.cts.fsd.projectmanager.mapper.ApplicationMapperObject;
 import com.cts.fsd.projectmanager.pojo.ProjectPOJO;
+import com.cts.fsd.projectmanager.pojo.TaskPOJO;
 import com.cts.fsd.projectmanager.repo.ParentTaskRepository;
 import com.cts.fsd.projectmanager.repo.ProjectRepository;
 
@@ -39,11 +40,13 @@ public class ProjectServiceTest {
 	@MockBean
 	protected UserService userService;
 	
+	@MockBean
+	protected TaskService taskService;
+	
 	@Autowired
 	protected ProjectService projectService;
 	
 	
-
 	@Test
 	public void testGetProjectById() {
 		
@@ -502,8 +505,11 @@ public class ProjectServiceTest {
 	@Test
 	public void testRemoveProjectById() {
 		
+		int userId = 1;
+		int projectId = 1;
+		int parentId = 1;
+		int taskId = 1;
 		
-		int projectId = 333;
 		ProjectEntity projectEntityFromDB = new ProjectEntity();
 		projectEntityFromDB.setProjectId(Long.valueOf(projectId));
 		projectEntityFromDB.setProject("fake_project");
@@ -522,6 +528,24 @@ public class ProjectServiceTest {
 		Optional<ProjectEntity> optional = Optional.of(projectEntityFromDB);
 		
 		Mockito.when(projectRepository.findById(Matchers.anyLong())).thenReturn(optional);
+		
+		List<TaskPOJO> taskPOJOList = new ArrayList<TaskPOJO>();
+		
+		TaskPOJO taskPOJO = new TaskPOJO();
+		taskPOJO.setTaskId(taskId);
+		taskPOJO.setTask("fake_task");
+		taskPOJO.setStartDate(new Date());
+		taskPOJO.setEndDate(new Date());
+		taskPOJO.setPriority(10);
+		taskPOJO.setParentId(parentId);
+		taskPOJO.setProjectId(projectId);
+		taskPOJO.setUserId(userId);
+		
+		taskPOJOList.add(taskPOJO);
+		
+		Mockito.when(taskService.getAllTasks()).thenReturn(taskPOJOList);
+		
+		Mockito.when(taskService.editTaskByIdProjectDelete(taskPOJO.getTaskId(), taskPOJO)).thenReturn(taskPOJO);
 		
 		Mockito
 			.doNothing()

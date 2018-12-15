@@ -1,6 +1,7 @@
 package com.cts.fsd.projectmanager.service;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -17,6 +18,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 import com.cts.fsd.projectmanager.entity.ParentTaskEntity;
 import com.cts.fsd.projectmanager.mapper.ApplicationMapperObject;
 import com.cts.fsd.projectmanager.pojo.ParentTaskPOJO;
+import com.cts.fsd.projectmanager.pojo.TaskPOJO;
 import com.cts.fsd.projectmanager.repo.ParentTaskRepository;
 
 
@@ -29,6 +31,9 @@ public class ParentTaskServiceTest {
 	
 	@MockBean
 	protected ParentTaskRepository parentTaskRepository;
+	
+	@MockBean
+	protected TaskService taskService;
 	
 	@Autowired
 	protected ParentTaskService parentTaskService;
@@ -228,29 +233,6 @@ public class ParentTaskServiceTest {
 	}
 	
 	@Test
-	public void testRemoveParentTaskById() {
-		
-		int parentId = 333;
-		
-		ParentTaskEntity parentTaskFromDB = new ParentTaskEntity();
-		parentTaskFromDB.setParentId(Long.valueOf(parentId));
-		parentTaskFromDB.setParentTask("fake_parentTask");
-		
-		Optional<ParentTaskEntity> optional = Optional.of(parentTaskFromDB);
-		
-		Mockito.when(parentTaskRepository.findById(Matchers.anyLong())).thenReturn(optional);
-		
-		Mockito
-			.doNothing()
-			.when(parentTaskRepository)
-			.deleteParentTaskById(Matchers.anyLong());
-		
-		boolean result = parentTaskService.removeParentTaskById(parentId);
-		Assert.assertNotNull(Boolean.valueOf(result));
-		
-	}
-
-	@Test
 	public void testGetAllParentTasks() {
 		
 		int parentId = 333;
@@ -335,4 +317,50 @@ public class ParentTaskServiceTest {
 		Assert.assertNotNull(result);
 		
 	}
+	
+
+	@Test
+	public void testRemoveParentTaskById() {
+		
+		int userId = 1;
+		int projectId = 1;
+		int parentId = 1;
+		int taskId = 1;
+		
+		ParentTaskEntity parentTaskFromDB = new ParentTaskEntity();
+		parentTaskFromDB.setParentId(Long.valueOf(parentId));
+		parentTaskFromDB.setParentTask("fake_parentTask");
+		
+		Optional<ParentTaskEntity> optional = Optional.of(parentTaskFromDB);
+		
+		Mockito.when(parentTaskRepository.findById(Matchers.anyLong())).thenReturn(optional);
+		
+		List<TaskPOJO> taskPOJOList = new ArrayList<TaskPOJO>();
+		
+		TaskPOJO taskPOJO = new TaskPOJO();
+		taskPOJO.setTaskId(taskId);
+		taskPOJO.setTask("fake_task");
+		taskPOJO.setStartDate(new Date());
+		taskPOJO.setEndDate(new Date());
+		taskPOJO.setPriority(10);
+		taskPOJO.setParentId(parentId);
+		taskPOJO.setProjectId(projectId);
+		taskPOJO.setUserId(userId);
+		
+		taskPOJOList.add(taskPOJO);
+		
+		Mockito.when(taskService.getAllTasks()).thenReturn(taskPOJOList);
+		
+		Mockito.when(taskService.editTaskByIdParentTaskDelete(taskPOJO.getTaskId(), taskPOJO)).thenReturn(taskPOJO);
+		
+		Mockito
+			.doNothing()
+			.when(parentTaskRepository)
+			.deleteParentTaskById(Matchers.anyLong());
+		
+		boolean result = parentTaskService.removeParentTaskById(parentId);
+		Assert.assertNotNull(Boolean.valueOf(result));
+		
+	}
+
 }

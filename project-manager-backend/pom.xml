@@ -103,7 +103,7 @@
 						<exclude>com/cts/fsd/projectmanager/controller/**/*</exclude>
 						<exclude>com/cts/fsd/projectmanager/entity/**/*</exclude>
 						<exclude>com/cts/fsd/projectmanager/exception/**/*</exclude>
-						<exclude>com/cts/fsd/projectmanager/mapper/**/*</exclude>
+						<!-- <exclude>com/cts/fsd/projectmanager/mapper/**/*</exclude> -->
 						<exclude>com/cts/fsd/projectmanager/pojo/**/*</exclude>
 						<!-- <exclude>com/cts/fsd/projectmanager/repo/**/*</exclude>
 						<exclude>com/cts/fsd/projectmanager/service/**/*</exclude> -->

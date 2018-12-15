@@ -90,9 +90,9 @@ public class ProjectService {
 		}
 		System.out.println("Before Save projectEntityList = " + projectEntityList.toString());
 		List<ProjectEntity> dbResponse = projectRepository.saveAll(projectEntityList);
-		System.out.println("createProjects() dbResponse = " + dbResponse.toString());
 		
 		if (null != dbResponse && !dbResponse.isEmpty()) {
+			System.out.println("createProjects() dbResponse = " + dbResponse.toString());
 			for(ProjectEntity projectEntity :  dbResponse ) {
 				ProjectPOJO projectPOJO = mapper.mapProjectEntityToPojo(projectEntity);
 				returnPojoList.add(projectPOJO);
@@ -110,7 +110,7 @@ public class ProjectService {
 	 * @param parentTaskPOJOList
 	 * @return List<ParentTaskPOJO>
 	 */
-	public List<ParentTaskPOJO> createParentTasks(List<ParentTaskPOJO> parentTaskPOJOList){
+	/*public List<ParentTaskPOJO> createParentTasks(List<ParentTaskPOJO> parentTaskPOJOList){
 		List<ParentTaskEntity> parentTaskEntityList = new ArrayList<ParentTaskEntity>();
 		List<ParentTaskPOJO> returnPojoList = new ArrayList<ParentTaskPOJO>();
 		
@@ -133,10 +133,10 @@ public class ProjectService {
 		}
 		
 		return returnPojoList;
-	}
+	}*/
 	
 	/**
-	 * getAllParentTasks() is used to get all the records in the Parent Task table
+	 * getAllProjects() is used to get all the records in the Parent Task table
 	 * @return List<ParentTaskPOJO>
 	 */
 	public List<ProjectPOJO> getAllProjects(){

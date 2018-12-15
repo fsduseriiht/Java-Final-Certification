@@ -75,9 +75,9 @@ public class UserController {
 		
 		System.out.println("getting all the projects from database...");
 		
-		List<UserPOJO> projectsFromDB = userService.getAllUsers();
+		List<UserPOJO> usersFromDB = userService.getAllUsers();
 		
-		return new ResponseEntity<List<UserPOJO>>(projectsFromDB , HttpStatus.OK);
+		return new ResponseEntity<List<UserPOJO>>(usersFromDB , HttpStatus.OK);
     }
 	
 	
@@ -92,14 +92,14 @@ public class UserController {
 		
 		System.out.println("User to be added to DB = " + userPOJO.toString());
 		
-		List<UserPOJO> projectPOJOList = new ArrayList<UserPOJO>();
-		projectPOJOList.add(userPOJO);
+		List<UserPOJO> userPOJOList = new ArrayList<UserPOJO>();
+		userPOJOList.add(userPOJO);
 		
 		// display User To be Created in console
-		projectPOJOList.forEach((pojo)-> {System.out.println(pojo);});
-		System.out.println("adding new User to db = " + projectPOJOList.toString());
+		userPOJOList.forEach((pojo)-> {System.out.println(pojo);});
+		System.out.println("adding new User to db = " + userPOJOList.toString());
 		
-		List<UserPOJO> dbResponse = userService.createUsers(projectPOJOList);
+		List<UserPOJO> dbResponse = userService.createUsers(userPOJOList);
 		
 		return new ResponseEntity<String>("New User Saved to Database..." + dbResponse , HttpStatus.OK);
 	}

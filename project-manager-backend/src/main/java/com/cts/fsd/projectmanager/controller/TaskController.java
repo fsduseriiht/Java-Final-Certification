@@ -2,6 +2,7 @@ package com.cts.fsd.projectmanager.controller;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -74,7 +75,37 @@ public class TaskController {
 		return new ResponseEntity<List<TaskPOJO>>(tasksFromDB , HttpStatus.OK);
     }
 	
+	/**
+	 * listTaskByProjectID() is used to display all records in task table db for a particular project id
+	 * @return ResponseEntity<List<TaskPOJO>>
+	 */
+	@RequestMapping(value = "/list/{pid}", method = RequestMethod.GET, produces = "application/json")
+	public ResponseEntity<List<TaskPOJO>> listTaskByProjectID(
+			@PathVariable(value = "pid") int projectId) {
+		
+		System.out.println("getting all the tasks from database under the project id [" + projectId + "]...");
+		
+		List<TaskPOJO> tasksFromDB = taskService.getAllTasks(projectId);
+		
+		return new ResponseEntity<List<TaskPOJO>>(tasksFromDB , HttpStatus.OK);
+    }
 	
+	/**
+	 * tasksPerProject() is used to display all records in task table db
+	 * @return ResponseEntity<Map<Integer , Integer>>
+	 * 
+	 */
+	@RequestMapping(value = "/countperproject", method = RequestMethod.GET, produces = "application/json")
+	public ResponseEntity<Map<Integer , Integer>> tasksPerProject() {
+		
+		System.out.println("getting count of the tasks per project from database...");
+		
+		List<TaskPOJO> tasksFromDB = taskService.getAllTasks();
+		
+		Map<Integer , Integer> tasksPerProjectMap = taskService.getTasksPerProject(tasksFromDB);
+		
+		return new ResponseEntity<Map<Integer , Integer>>(tasksPerProjectMap , HttpStatus.OK);
+    }
 	
 	/**
 	 * createTask() is used to create a single record in task table in db

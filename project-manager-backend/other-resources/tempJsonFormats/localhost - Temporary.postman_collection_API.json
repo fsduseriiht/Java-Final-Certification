@@ -2,7 +2,7 @@
 	"variables": [],
 	"info": {
 		"name": "localhost - Temporary",
-		"_postman_id": "359e0f38-73ec-7f45-5430-90500c12aa47",
+		"_postman_id": "dac7ed04-6c80-a165-3cb2-1ff23d97a782",
 		"description": "",
 		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
 	},
@@ -137,6 +137,80 @@
 			],
 			"request": {
 				"url": "{{baseurl}}task/list",
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "task/countperproject COUNT No Of Task Per Project",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"// For Cloud Testing",
+							"// var apiUrl = \"\";",
+							"",
+							"//For Local Machine Testing",
+							"var domain = \"localhost\";",
+							"var port = \"8080\";",
+							"var appContext = \"projectmanagerbackend\";",
+							"var apiUrl = \"http://\" + domain + \":\" + port +\"/\" + appContext + \"/\";",
+							"",
+							"",
+							"postman.setEnvironmentVariable(\"baseurl\", apiUrl);"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "{{baseurl}}task/countperproject",
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"description": "COUNT No Of Task Per Project"
+			},
+			"response": []
+		},
+		{
+			"name": "task/list LIST BY PROJECT_ID",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"// For Cloud Testing",
+							"// var apiUrl = \"\";",
+							"",
+							"//For Local Machine Testing",
+							"var domain = \"localhost\";",
+							"var port = \"8080\";",
+							"var appContext = \"projectmanagerbackend\";",
+							"var apiUrl = \"http://\" + domain + \":\" + port +\"/\" + appContext + \"/\";",
+							"",
+							"",
+							"postman.setEnvironmentVariable(\"baseurl\", apiUrl);",
+							"",
+							"var projectId = 1;",
+							"",
+							"postman.setEnvironmentVariable(\"projectId\", projectId);"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "{{baseurl}}task/list/{{projectId}}",
 				"method": "GET",
 				"header": [],
 				"body": {

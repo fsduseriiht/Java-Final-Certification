@@ -1,7 +1,9 @@
 package com.cts.fsd.projectmanager.service;
 
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.NoSuchElementException;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -93,7 +95,24 @@ public class TaskService {
 		return returnPojoList;
 	}
 
-
+	public Map<Integer , Integer> getTasksPerProject(List<TaskPOJO> taskPOJOList) {
+		
+		Map<Integer , Integer> returnMap = new LinkedHashMap<>();
+		
+		taskPOJOList.forEach(taskPOJO -> {
+			if ( Integer.valueOf(taskPOJO.getProjectId()).intValue() > 0 ) {
+				if (returnMap.get(Integer.valueOf(taskPOJO.getProjectId())) != null) {
+					returnMap.put(Integer.valueOf(taskPOJO.getProjectId()), returnMap.get(Integer.valueOf(taskPOJO.getProjectId())).intValue()+1);
+				} else {
+					returnMap.put(Integer.valueOf(taskPOJO.getProjectId()), 1);
+				}
+			} else {
+				System.out.println("TaskService :: getTasksPerProject :: project_id less than zero ->  " + Integer.valueOf(taskPOJO.getProjectId()).intValue());
+			}
+		});
+		System.out.println("TaskService :: getTasksPerProject :: project_id map collected ->  " + returnMap);
+		return returnMap;
+	}
 	/**
 	 * getAllTasks() is used to get all the records in task table 
 	 * @return List<TaskPOJO>
@@ -102,6 +121,22 @@ public class TaskService {
 		
 		List<TaskEntity> dbResponse = taskRepository.findAll();
 		System.out.println("getAllTasks() dbResponse = " + dbResponse);
+		
+		List<TaskPOJO> returnPojoList = new ArrayList<TaskPOJO>();
+		
+		if (null != dbResponse && !dbResponse.isEmpty()) {
+			for(TaskEntity taskEntity :  dbResponse ) {
+				TaskPOJO parentTaskPOJO = mapper.mapTaskEntityToPojo(taskEntity);
+				returnPojoList.add(parentTaskPOJO);
+			}
+		}
+		return returnPojoList;
+	}
+	
+	public List<TaskPOJO> getAllTasks(int projectId) {
+//		List<TaskEntity> dbResponse = taskRepository.findAll();
+		List<TaskEntity> dbResponse = taskRepository.listTaskByProjectId(new Long(projectId));
+		System.out.println("getAllTasks("+projectId+") dbResponse = " + dbResponse);
 		
 		List<TaskPOJO> returnPojoList = new ArrayList<TaskPOJO>();
 		

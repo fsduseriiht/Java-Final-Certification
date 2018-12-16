@@ -501,6 +501,46 @@ public class ProjectServiceTest {
 		
 	}
 	
+	@Test
+	public void testEditProjectByIdUserDelete() {
+		
+		int projectId = 333;
+		ProjectEntity projectEntityFromDB = new ProjectEntity();
+		projectEntityFromDB.setProjectId(Long.valueOf(projectId));
+		projectEntityFromDB.setProject("fake_project");
+		projectEntityFromDB.setStartDate(new java.sql.Date(new Date().getTime()));
+		projectEntityFromDB.setEndDate(new java.sql.Date(new Date().getTime()));
+		projectEntityFromDB.setPriority(10);
+		
+		UserEntity userFromDB = new UserEntity();
+		userFromDB.setUserId(Long.valueOf(1));
+		userFromDB.setFirstName("fake_firstName");
+		userFromDB.setLastName("fake_lastName");
+		userFromDB.setEmployeeId("fake_employeeId");
+		
+		projectEntityFromDB.setUserEntity(userFromDB);
+		
+		Optional<ProjectEntity> optional = Optional.of(projectEntityFromDB);
+		
+		Mockito.when(projectRepository.findById(Matchers.anyLong())).thenReturn(optional);
+		
+		ProjectPOJO projectPOJO = new ProjectPOJO();
+		projectPOJO.setProjectId(projectId);
+		projectPOJO.setProject("fake_project");
+		projectPOJO.setStartDate(new Date());
+		projectPOJO.setEndDate(new Date());
+		projectPOJO.setPriority(10);
+		projectPOJO.setUserId(1);
+		
+		Mockito.when(projectRepository.save(Matchers.<ProjectEntity>any())).thenReturn(projectEntityFromDB);
+		
+		Mockito.when(mapper.mapProjectEntityToPojo(Matchers.<ProjectEntity>any())).thenReturn(projectPOJO);
+		
+		ProjectPOJO result = projectService.editProjectByIdUserDelete(projectId , projectPOJO);
+		Assert.assertNotNull(result);
+		
+	}
+	
 	
 	@Test
 	public void testRemoveProjectById() {

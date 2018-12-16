@@ -745,6 +745,185 @@ public class TaskServiceTest {
 	}
 	
 	@Test
+	public void testEditTaskByIdParentTaskDelete() {
+
+		int taskId = 333;
+		TaskEntity taskFromDB = new TaskEntity();
+		taskFromDB.setTaskId(Long.valueOf(taskId));
+		taskFromDB.setTask("fake_task");
+		taskFromDB.setStartDate(new java.sql.Date(new Date().getTime()));
+		taskFromDB.setEndDate(new java.sql.Date(new Date().getTime()));
+		taskFromDB.setPriority(10);
+		
+		int userId = 1;
+		UserEntity userFromDB = new UserEntity();
+		userFromDB.setUserId(Long.valueOf(userId));
+		userFromDB.setFirstName("fake_firstName");
+		userFromDB.setLastName("fake_lastName");
+		userFromDB.setEmployeeId("fake_employeeId");
+		
+		taskFromDB.setUserEntity(userFromDB);
+		
+		int projectId = 1;
+		ProjectEntity projectEntityFromDB = new ProjectEntity();
+		projectEntityFromDB.setProjectId(Long.valueOf(projectId));
+		projectEntityFromDB.setProject("fake_project");
+		projectEntityFromDB.setStartDate(new java.sql.Date(new Date().getTime()));
+		projectEntityFromDB.setEndDate(new java.sql.Date(new Date().getTime()));
+		projectEntityFromDB.setPriority(10);
+		
+		taskFromDB.setProjectEntity(projectEntityFromDB);
+		
+		int parentId = 1;
+		ParentTaskEntity parentTaskEntityFromDB = new ParentTaskEntity();
+		parentTaskEntityFromDB.setParentId(Long.valueOf(parentId));
+		parentTaskEntityFromDB.setParentTask("fake_parentTask");
+		
+		taskFromDB.setParentTaskEntity(parentTaskEntityFromDB);
+		
+		Optional<TaskEntity> optional = Optional.of(taskFromDB);
+		
+		Mockito.when(taskRepository.findById(Long.valueOf(taskId))).thenReturn(optional);
+		
+		Mockito.when(taskRepository.save(Matchers.<TaskEntity>any())).thenReturn(taskFromDB);
+		
+		TaskPOJO taskPOJO = new TaskPOJO();
+		taskPOJO.setTaskId(taskId);
+		taskPOJO.setTask("fake_task");
+		taskPOJO.setStartDate(new Date());
+		taskPOJO.setEndDate(new Date());
+		taskPOJO.setPriority(10);
+		taskPOJO.setParentId(parentId);
+		taskPOJO.setProjectId(projectId);
+		taskPOJO.setUserId(userId);
+		
+		Mockito.when(mapper.mapTaskEntityToPojo(Matchers.<TaskEntity>any())).thenReturn(taskPOJO);
+		
+		TaskPOJO result = taskService.editTaskByIdParentTaskDelete(taskId, taskPOJO);
+		Assert.assertNotNull(result);
+	}
+	
+	@Test
+	public void testEditTaskByIdProjectDelete() {
+
+		int taskId = 333;
+		TaskEntity taskFromDB = new TaskEntity();
+		taskFromDB.setTaskId(Long.valueOf(taskId));
+		taskFromDB.setTask("fake_task");
+		taskFromDB.setStartDate(new java.sql.Date(new Date().getTime()));
+		taskFromDB.setEndDate(new java.sql.Date(new Date().getTime()));
+		taskFromDB.setPriority(10);
+		
+		int userId = 1;
+		UserEntity userFromDB = new UserEntity();
+		userFromDB.setUserId(Long.valueOf(userId));
+		userFromDB.setFirstName("fake_firstName");
+		userFromDB.setLastName("fake_lastName");
+		userFromDB.setEmployeeId("fake_employeeId");
+		
+		taskFromDB.setUserEntity(userFromDB);
+		
+		int projectId = 1;
+		ProjectEntity projectEntityFromDB = new ProjectEntity();
+		projectEntityFromDB.setProjectId(Long.valueOf(projectId));
+		projectEntityFromDB.setProject("fake_project");
+		projectEntityFromDB.setStartDate(new java.sql.Date(new Date().getTime()));
+		projectEntityFromDB.setEndDate(new java.sql.Date(new Date().getTime()));
+		projectEntityFromDB.setPriority(10);
+		
+		taskFromDB.setProjectEntity(projectEntityFromDB);
+		
+		int parentId = 1;
+		ParentTaskEntity parentTaskEntityFromDB = new ParentTaskEntity();
+		parentTaskEntityFromDB.setParentId(Long.valueOf(parentId));
+		parentTaskEntityFromDB.setParentTask("fake_parentTask");
+		
+		taskFromDB.setParentTaskEntity(parentTaskEntityFromDB);
+		
+		Optional<TaskEntity> optional = Optional.of(taskFromDB);
+		
+		Mockito.when(taskRepository.findById(Long.valueOf(taskId))).thenReturn(optional);
+		
+		Mockito.when(taskRepository.save(Matchers.<TaskEntity>any())).thenReturn(taskFromDB);
+		
+		TaskPOJO taskPOJO = new TaskPOJO();
+		taskPOJO.setTaskId(taskId);
+		taskPOJO.setTask("fake_task");
+		taskPOJO.setStartDate(new Date());
+		taskPOJO.setEndDate(new Date());
+		taskPOJO.setPriority(10);
+		taskPOJO.setParentId(parentId);
+		taskPOJO.setProjectId(projectId);
+		taskPOJO.setUserId(userId);
+		
+		Mockito.when(mapper.mapTaskEntityToPojo(Matchers.<TaskEntity>any())).thenReturn(taskPOJO);
+		
+		TaskPOJO result = taskService.editTaskByIdProjectDelete(taskId, taskPOJO);
+		Assert.assertNotNull(result);
+	}
+
+	@Test
+	public void testEditTaskByIdUserDelete() {
+
+		int taskId = 333;
+		TaskEntity taskFromDB = new TaskEntity();
+		taskFromDB.setTaskId(Long.valueOf(taskId));
+		taskFromDB.setTask("fake_task");
+		taskFromDB.setStartDate(new java.sql.Date(new Date().getTime()));
+		taskFromDB.setEndDate(new java.sql.Date(new Date().getTime()));
+		taskFromDB.setPriority(10);
+		
+		int userId = 1;
+		UserEntity userFromDB = new UserEntity();
+		userFromDB.setUserId(Long.valueOf(userId));
+		userFromDB.setFirstName("fake_firstName");
+		userFromDB.setLastName("fake_lastName");
+		userFromDB.setEmployeeId("fake_employeeId");
+		
+		taskFromDB.setUserEntity(userFromDB);
+		
+		int projectId = 1;
+		ProjectEntity projectEntityFromDB = new ProjectEntity();
+		projectEntityFromDB.setProjectId(Long.valueOf(projectId));
+		projectEntityFromDB.setProject("fake_project");
+		projectEntityFromDB.setStartDate(new java.sql.Date(new Date().getTime()));
+		projectEntityFromDB.setEndDate(new java.sql.Date(new Date().getTime()));
+		projectEntityFromDB.setPriority(10);
+		
+		taskFromDB.setProjectEntity(projectEntityFromDB);
+		
+		int parentId = 1;
+		ParentTaskEntity parentTaskEntityFromDB = new ParentTaskEntity();
+		parentTaskEntityFromDB.setParentId(Long.valueOf(parentId));
+		parentTaskEntityFromDB.setParentTask("fake_parentTask");
+		
+		taskFromDB.setParentTaskEntity(parentTaskEntityFromDB);
+		
+		Optional<TaskEntity> optional = Optional.of(taskFromDB);
+		
+		Mockito.when(taskRepository.findById(Long.valueOf(taskId))).thenReturn(optional);
+		
+		Mockito.when(taskRepository.save(Matchers.<TaskEntity>any())).thenReturn(taskFromDB);
+		
+		TaskPOJO taskPOJO = new TaskPOJO();
+		taskPOJO.setTaskId(taskId);
+		taskPOJO.setTask("fake_task");
+		taskPOJO.setStartDate(new Date());
+		taskPOJO.setEndDate(new Date());
+		taskPOJO.setPriority(10);
+		taskPOJO.setParentId(parentId);
+		taskPOJO.setProjectId(projectId);
+		taskPOJO.setUserId(userId);
+		
+		Mockito.when(mapper.mapTaskEntityToPojo(Matchers.<TaskEntity>any())).thenReturn(taskPOJO);
+		
+		TaskPOJO result = taskService.editTaskByIdUserDelete(taskId, taskPOJO);
+		Assert.assertNotNull(result);
+	}
+	
+	
+	
+	@Test
 	public void testRemoveTaskById() {
 
 		int taskId = 333;

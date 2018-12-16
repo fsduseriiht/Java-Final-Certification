@@ -336,6 +336,16 @@ public class UserServiceTest {
 		
 		projectPOJOList.add(projectPOJO);
 		
+		ProjectPOJO projectPOJO2 = new ProjectPOJO();
+		projectPOJO2.setProjectId(projectId);
+		projectPOJO2.setProject("fake_project");
+		projectPOJO2.setStartDate(new Date());
+		projectPOJO2.setEndDate(new Date());
+		projectPOJO2.setPriority(10);
+		projectPOJO2.setUserId(2);
+		
+		projectPOJOList.add(projectPOJO2);
+		
 		Mockito.when(projectService.getAllProjects()).thenReturn(projectPOJOList);
 		
 		Mockito.when(projectService.editProjectByIdUserDelete(projectPOJO.getProjectId() , projectPOJO)).thenReturn(projectPOJO);
@@ -353,6 +363,18 @@ public class UserServiceTest {
 		taskPOJO.setUserId(userId);
 		
 		taskFromDBList.add(taskPOJO);
+		
+		TaskPOJO taskPOJO2 = new TaskPOJO();
+		taskPOJO2.setTaskId(taskId);
+		taskPOJO2.setTask("fake_task");
+		taskPOJO2.setStartDate(new Date());
+		taskPOJO2.setEndDate(new Date());
+		taskPOJO2.setPriority(10);
+		taskPOJO2.setParentId(parentId);
+		taskPOJO2.setProjectId(projectId);
+		taskPOJO2.setUserId(2);
+		
+		taskFromDBList.add(taskPOJO2);
 		
 		Mockito.when(taskService.getAllTasks()).thenReturn(taskFromDBList);
 		

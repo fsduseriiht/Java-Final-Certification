@@ -1,0 +1,39 @@
+<div class="row">
+  <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8 project-wrapper">
+    <div *ngFor="let project of projects | searchTable: searchValue" class="col-lg-12 col-md-12 col-sm-12 col-xs-12 project-container">
+      <div class="row">
+          <div class="col-lg-7 col-md-7 col-sm-7 col-xs-7">
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                  Project: {{project.project}}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                    No. of tasks: {{ getTaskNumber(project.projectId) }}
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                    Completed: {{ getCompleted(project.startDate,project.endDate) }}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                    Start Date: {{ getDate(project.startDate) }}
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                    End Date: {{ getDate(project.endDate) }}
+                </div>
+            </div>
+          </div>
+          <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+            Priority: {{project.priority}}
+          </div>
+          <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+              <span> <button class="btn btn-secondary separator" [disabled]="editedProjectId" [routerLink]="['/editProject', project.projectId]">Update</button></span>
+              <span><button type="button" [disabled]="editedProjectId" class="btn btn-secondary" (click)="suspendProject(project.projectId)" >Suspend</button></span>
+          </div>
+      </div>
+    </div>
+  </div>
+</div>
+  

@@ -1,0 +1,18 @@
+.separator {
+	margin-bottom: 10px;
+}
+
+.user-container {
+	border: 1px solid #ccc;
+	padding: 20px;
+}
+
+.user-container .fields {
+	background: #eee;
+	margin-bottom: 5px;
+}
+
+.user-wrapper {
+	overflow: auto;
+	max-height: 400px;
+}

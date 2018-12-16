@@ -1,0 +1,17 @@
+<div class="row">
+  <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8 user-wrapper">
+    <div *ngFor="let user of users | searchTable: searchValue" class="col-lg-12 col-md-12 col-sm-12 col-xs-12 user-container">
+      <div class="row">
+        <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8 fields">{{ user.firstName }}</div>
+        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+          <span> <button class="btn btn-secondary separator" [disabled]="editedUserId" [routerLink]="['/editUser', user.userId]">Edit</button></span>
+        </div>
+        <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8 fields">{{ user.lastName }}</div>
+        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+          <span><button type="button" [disabled]="editedUserId" class="btn btn-secondary" (click)="deleteUser(user.userId)" >Delete</button></span>
+        </div>
+        <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8 fields">{{ user.employeeId }}</div>
+      </div>
+    </div>
+  </div>
+</div>

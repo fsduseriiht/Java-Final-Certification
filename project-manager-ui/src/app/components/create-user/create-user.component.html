@@ -1,0 +1,78 @@
+<form [formGroup]="userForm" (submit)="onSubmit()">
+  <div class="row">
+    <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+        <div class="row form-group">
+            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                <p>
+                    First Name:
+                </p>
+            </div>
+            <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+                <input type="text" class="form-control" formControlName="firstName" [(ngModel)]="firstName"/>
+                <span *ngIf="userForm.controls.firstName.errors && (userForm.controls.firstName.dirty || userForm.controls.firstName.touched)">Please enter proper first Name.</span>
+            </div>
+        </div>
+        <div class="row form-group">
+            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                <p>
+                    Last Name:
+                </p>
+            </div>
+            <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+                <input type="text" class="form-control" formControlName="lastName" [(ngModel)]="lastName"/>
+                <span *ngIf="userForm.controls.lastName.errors && (userForm.controls.lastName.dirty || userForm.controls.lastName.touched)">Please enter proper last Name.</span>
+            </div>
+        </div>
+        <div class="row form-group">
+            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                <p>
+                    Employee id:
+                </p>
+            </div>
+            <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+                <input type="text" class="form-control" type="number" formControlName="employeeId" [(ngModel)]="employeeId"/>
+                <span *ngIf="userForm.controls.employeeId.errors && (userForm.controls.employeeId.dirty ||userForm.controls.employeeId.touched)">Please enter proper last Name.</span>
+            </div>
+        </div>
+        <div class="row form-group" *ngIf="!editedUserId">
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                <button type="submit" class="btn btn-primary form-control">Add</button>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                <button type="reset" class="btn btn-primary form-control">Reset</button>
+            </div>
+        </div>
+        <div class="row form-group" *ngIf="editedUserId">
+          <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+              <button type="submit" class="btn btn-primary form-control">Update</button>
+          </div>
+          <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+              <button type="button" class="btn btn-primary form-control" (click)="cancelEdit()">Cancel</button>
+          </div>
+      </div>
+    </div>
+    <br>
+  </div>
+</form>
+<div class="row" *ngIf="validationError"><span class="error">{{validationError}}</span></div>
+<div class="row">
+  <span class="col-lg-3 col-md-3 col-sm-3 col-xs-3 search-field">
+    <input type="text" class="form-control" [value]="searchValue" (input)="updateSearchQuery($event)" placeholder="Search..." >
+  </span>
+  <span class="col-lg-5 col-md-5 col-sm-5 col-xs-5 align-right">
+    <span>
+      <label>Sort By:</label>
+      <button class="btn btn-default" (click)="sort('firstName')">First Name</button>
+    </span>
+    <span>
+      <button class="btn btn-default" (click)="sort('lastName')">Last Name</button>
+    </span>
+    <span>
+      <button class="btn btn-default" (click)="sort('employeeId', true)">Id</button>
+    </span>
+  </span>
+</div>
+<app-view-users [users]="(users$ | async)"
+                [editedUserId]="editedUserId"
+                [searchValue]="searchValue"
+                (onDeleteUser)="deleteUser($event)"></app-view-users>

@@ -1,0 +1,121 @@
+<form [formGroup]="projectForm" (submit)="onSubmit()">
+  <div class="row">
+    <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
+        <div class="row form-group">
+            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                <p>
+                    Project:
+                </p>
+            </div>
+            <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+                <input type="text" class="form-control" formControlName="projectName" [(ngModel)]="projectName"/>
+                <span *ngIf="projectForm.controls.projectName.errors && (projectForm.controls.projectName.dirty || projectForm.controls.projectName.touched)">Please enter proper project name.</span>
+            </div>
+        </div>
+        <div class="row form-group">
+            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4"></div>
+            <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+                <input type="checkbox" [checked]="allowDates" (change)="changeAllowDates($event)"/>
+                <label>Set start and end date</label>
+                <span *ngIf="allowDates">
+                    <input type="date" class="form-control date-field" formControlName="startDate" [(ngModel)]="startDate"/>
+                    <span *ngIf="projectForm.controls.startDate.errors && (projectForm.controls.startDate.dirty || projectForm.controls.startDate.touched)">Please enter start date.</span>
+                    <input type="date" class="form-control date-field" formControlName="endDate" [(ngModel)]="endDate"/>
+                <span *ngIf="projectForm.controls.endDate.errors && (projectForm.controls.endDate.dirty || projectForm.controls.endDate.touched)">Please enter end date.</span>
+                </span>
+            </div>
+        </div>
+        <div class="row form-group">
+          <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+            <p>
+              Priority:
+            </p>
+          </div>
+          <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+            <span class="minPriority">{{minPriority}}</span>
+            <span class="maxPriority">{{maxPriority}}</span>
+            <input type="range" [(ngModel)]="priority" [max]="maxPriority" [min]="minPriority" class="form-control" formControlName="priority"/>
+            <span [hidden]="projectForm.controls.priority.valid || (projectForm.controls.priority.pristine && !submitted)">Please select proper Priority.</span>
+          </div>
+        </div>
+        <div class="row form-group">
+          <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+            <p>
+              Manager
+            </p>
+          </div>
+          <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+            <input type="text" disabled class="form-control" [value]="selectedUser"/>
+          </div>
+          <button type="button" class="col-lg-2 col-md-2 col-sm-2 col-xs-2 btn btn-info btn-sm search" data-toggle="modal" data-target="#userModal">Search</button>
+          <div id="userModal" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h4 class="modal-title">User Modal</h4>
+                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="modal-body">
+                  <p>Select manager from the list</p>
+                  <select class="form-control" [(ngModel)]="user" formControlName="user">
+                    <option *ngFor="let user of (users$ | async)" [value]="user.userId">
+                      {{user.firstName}} {{user.lastName}}
+                    </option>
+                  </select>
+                  <span *ngIf="projectForm.controls.user.errors">Please select manager.</span>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-primary" (click)="selectUser(user)" data-dismiss="modal">Select</button>
+                  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row form-group" *ngIf="!editedProjectId">
+            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+                <button type="submit" class="btn btn-primary form-control">Add</button>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+                <button type="reset" class="btn btn-primary form-control">Reset</button>
+            </div>
+        </div>
+        <div class="row form-group" *ngIf="editedProjectId">
+          <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+              <button type="submit" class="btn btn-primary form-control">Update</button>
+          </div>
+          <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+              <button type="button" class="btn btn-primary form-control" (click)="cancelEdit()">Cancel</button>
+          </div>
+      </div>
+    </div>
+    <br>
+  </div>
+</form>
+<div class-="row form-group" *ngIf="validationError">
+    <span class="error">{{validationError}}</span>
+  </div>
+<div class="row">
+  <span class="col-lg-7 col-md-7 col-sm-7 col-xs-7 search-field">
+    <input type="text" class="form-control" [value]="searchValue" (input)="updateSearchQuery($event)" placeholder="Search..." >
+  </span>
+  <span class="col-lg-7 col-md-7 col-sm-7 col-xs-7">
+    <span>
+      <label>Sort By:</label>
+      <button class="btn btn-default" (click)="sort('startDate', 'date')">Start Date</button>
+    </span>
+    <span>
+      <button class="btn btn-default" (click)="sort('endDate', 'date')">End Date</button>
+    </span>
+    <span>
+      <button class="btn btn-default" (click)="sort('priority', 'number')">Priority</button>
+    </span>
+    <span>
+        <button class="btn btn-default" (click)="sortCompleted()">Completed</button>
+      </span>
+  </span>
+</div>
+<app-view-project [projects]="(projects$ | async)"
+                  [editedProjectId]="editedProjectId"
+                  [searchValue]="searchValue"
+                  (onSuspendProject)="suspendProject($event)"></app-view-project>

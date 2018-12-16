@@ -1,14 +1,14 @@
 {
 	"variables": [],
 	"info": {
-		"name": "localhost - Temporary",
-		"_postman_id": "8087e2e8-4996-e7a4-87ed-493d38f9c566",
+		"name": "192.168.99.100-projectmanagerbackend-API",
+		"_postman_id": "6f646259-4f81-1600-7bba-a3ff9158bb9c",
 		"description": "",
 		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
 	},
 	"item": [
 		{
-			"name": "project/dump CREATE DUMP",
+			"name": "user/list LIST ALL",
 			"event": [
 				{
 					"listen": "prerequest",
@@ -19,7 +19,7 @@
 							"// var apiUrl = \"\";",
 							"",
 							"//For Local Machine Testing",
-							"var domain = \"localhost\";",
+							"var domain = \"192.168.99.100\";",
 							"var port = \"8080\";",
 							"var appContext = \"projectmanagerbackend\";",
 							"var apiUrl = \"http://\" + domain + \":\" + port +\"/\" + appContext + \"/\";",
@@ -31,10 +31,13 @@
 				}
 			],
 			"request": {
-				"url": "{{baseurl}}project/dump",
+				"url": "{{baseurl}}user/list",
 				"method": "GET",
 				"header": [],
-				"body": {},
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
 				"description": ""
 			},
 			"response": []
@@ -51,7 +54,7 @@
 							"// var apiUrl = \"\";",
 							"",
 							"//For Local Machine Testing",
-							"var domain = \"localhost\";",
+							"var domain = \"192.168.99.100\";",
 							"var port = \"8080\";",
 							"var appContext = \"projectmanagerbackend\";",
 							"var apiUrl = \"http://\" + domain + \":\" + port +\"/\" + appContext + \"/\";",
@@ -66,13 +69,16 @@
 				"url": "{{baseurl}}project/list",
 				"method": "GET",
 				"header": [],
-				"body": {},
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
 				"description": ""
 			},
 			"response": []
 		},
 		{
-			"name": "project/ ADD",
+			"name": "parent/list LIST ALL",
 			"event": [
 				{
 					"listen": "prerequest",
@@ -83,7 +89,7 @@
 							"// var apiUrl = \"\";",
 							"",
 							"//For Local Machine Testing",
-							"var domain = \"localhost\";",
+							"var domain = \"192.168.99.100\";",
 							"var port = \"8080\";",
 							"var appContext = \"projectmanagerbackend\";",
 							"var apiUrl = \"http://\" + domain + \":\" + port +\"/\" + appContext + \"/\";",
@@ -95,25 +101,19 @@
 				}
 			],
 			"request": {
-				"url": "{{baseurl}}project/",
-				"method": "POST",
-				"header": [
-					{
-						"key": "Content-Type",
-						"value": "application/json",
-						"description": ""
-					}
-				],
+				"url": "{{baseurl}}parent/list",
+				"method": "GET",
+				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"project\": \"project4\",\n    \"startDate\": \"2017-09-08T18:30:00.000+0000\",\n    \"endDate\": \"2017-09-08T18:30:00.000+0000\",\n\t\"priority\": 1,\n\t\"userId\": 1\n}"
+					"raw": ""
 				},
 				"description": ""
 			},
 			"response": []
 		},
 		{
-			"name": "project/{id} UPDATE",
+			"name": "task/list LIST ALL",
 			"event": [
 				{
 					"listen": "prerequest",
@@ -124,7 +124,77 @@
 							"// var apiUrl = \"\";",
 							"",
 							"//For Local Machine Testing",
-							"var domain = \"localhost\";",
+							"var domain = \"192.168.99.100\";",
+							"var port = \"8080\";",
+							"var appContext = \"projectmanagerbackend\";",
+							"var apiUrl = \"http://\" + domain + \":\" + port +\"/\" + appContext + \"/\";",
+							"",
+							"",
+							"postman.setEnvironmentVariable(\"baseurl\", apiUrl);"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "{{baseurl}}task/list",
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "task/countperproject COUNT No Of Task Per Project",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"// For Cloud Testing",
+							"// var apiUrl = \"\";",
+							"",
+							"//For Local Machine Testing",
+							"var domain = \"192.168.99.100\";",
+							"var port = \"8080\";",
+							"var appContext = \"projectmanagerbackend\";",
+							"var apiUrl = \"http://\" + domain + \":\" + port +\"/\" + appContext + \"/\";",
+							"",
+							"",
+							"postman.setEnvironmentVariable(\"baseurl\", apiUrl);"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "{{baseurl}}task/countperproject",
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"description": "COUNT No Of Task Per Project"
+			},
+			"response": []
+		},
+		{
+			"name": "task/list LIST BY PROJECT_ID",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"// For Cloud Testing",
+							"// var apiUrl = \"\";",
+							"",
+							"//For Local Machine Testing",
+							"var domain = \"192.168.99.100\";",
 							"var port = \"8080\";",
 							"var appContext = \"projectmanagerbackend\";",
 							"var apiUrl = \"http://\" + domain + \":\" + port +\"/\" + appContext + \"/\";",
@@ -132,136 +202,21 @@
 							"",
 							"postman.setEnvironmentVariable(\"baseurl\", apiUrl);",
 							"",
-							"var reqBody = JSON.parse(request.data)",
-							"var projectId = reqBody.projectId;",
+							"var projectId = 1;",
+							"",
 							"postman.setEnvironmentVariable(\"projectId\", projectId);"
 						]
 					}
 				}
 			],
 			"request": {
-				"url": "{{baseurl}}project/{{projectId}}",
-				"method": "PUT",
-				"header": [
-					{
-						"key": "Content-Type",
-						"value": "application/json",
-						"description": ""
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n\t\"projectId\": 1,\n\t\"project\": \"project4_updated\",\n    \"startDate\": \"2017-09-08T18:30:00.000+0000\",\n    \"endDate\": \"2017-09-08T18:30:00.000+0000\",\n\t\"priority\": 1,\n\t\"userId\": 1\n}"
-				},
-				"description": ""
-			},
-			"response": []
-		},
-		{
-			"name": "project/:userId DELETE",
-			"event": [
-				{
-					"listen": "prerequest",
-					"script": {
-						"type": "text/javascript",
-						"exec": [
-							"// For Cloud Testing",
-							"// var apiUrl = \"\";",
-							"",
-							"//For Local Machine Testing",
-							"var domain = \"localhost\";",
-							"var port = \"8080\";",
-							"var appContext = \"projectmanagerbackend\";",
-							"var apiUrl = \"http://\" + domain + \":\" + port +\"/\" + appContext + \"/\";",
-							"",
-							"",
-							"postman.setEnvironmentVariable(\"baseurl\", apiUrl);",
-							"",
-							"var reqBody = JSON.parse(request.data);",
-							"var projectId = reqBody.projectId;",
-							"postman.setEnvironmentVariable(\"projectId\", projectId);"
-						]
-					}
-				}
-			],
-			"request": {
-				"url": "{{baseurl}}project/{{projectId}}",
-				"method": "DELETE",
-				"header": [
-					{
-						"key": "Content-Type",
-						"value": "application/json",
-						"description": ""
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n\t\"projectId\": 15\n}"
-				},
-				"description": ""
-			},
-			"response": []
-		},
-		{
-			"name": "user/dump CREATE DUMP",
-			"event": [
-				{
-					"listen": "prerequest",
-					"script": {
-						"type": "text/javascript",
-						"exec": [
-							"// For Cloud Testing",
-							"// var apiUrl = \"\";",
-							"",
-							"//For Local Machine Testing",
-							"var domain = \"localhost\";",
-							"var port = \"8080\";",
-							"var appContext = \"projectmanagerbackend\";",
-							"var apiUrl = \"http://\" + domain + \":\" + port +\"/\" + appContext + \"/\";",
-							"",
-							"",
-							"postman.setEnvironmentVariable(\"baseurl\", apiUrl);"
-						]
-					}
-				}
-			],
-			"request": {
-				"url": "{{baseurl}}user/dump",
+				"url": "{{baseurl}}task/list/{{projectId}}",
 				"method": "GET",
 				"header": [],
-				"body": {},
-				"description": ""
-			},
-			"response": []
-		},
-		{
-			"name": "user/list LIST ALL",
-			"event": [
-				{
-					"listen": "prerequest",
-					"script": {
-						"type": "text/javascript",
-						"exec": [
-							"// For Cloud Testing",
-							"// var apiUrl = \"\";",
-							"",
-							"//For Local Machine Testing",
-							"var domain = \"localhost\";",
-							"var port = \"8080\";",
-							"var appContext = \"projectmanagerbackend\";",
-							"var apiUrl = \"http://\" + domain + \":\" + port +\"/\" + appContext + \"/\";",
-							"",
-							"",
-							"postman.setEnvironmentVariable(\"baseurl\", apiUrl);"
-						]
-					}
-				}
-			],
-			"request": {
-				"url": "{{baseurl}}user/list",
-				"method": "GET",
-				"header": [],
-				"body": {},
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
 				"description": ""
 			},
 			"response": []
@@ -278,7 +233,7 @@
 							"// var apiUrl = \"\";",
 							"",
 							"//For Local Machine Testing",
-							"var domain = \"localhost\";",
+							"var domain = \"192.168.99.100\";",
 							"var port = \"8080\";",
 							"var appContext = \"projectmanagerbackend\";",
 							"var apiUrl = \"http://\" + domain + \":\" + port +\"/\" + appContext + \"/\";",
@@ -308,6 +263,129 @@
 			"response": []
 		},
 		{
+			"name": "project/ ADD",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"// For Cloud Testing",
+							"// var apiUrl = \"\";",
+							"",
+							"//For Local Machine Testing",
+							"var domain = \"192.168.99.100\";",
+							"var port = \"8080\";",
+							"var appContext = \"projectmanagerbackend\";",
+							"var apiUrl = \"http://\" + domain + \":\" + port +\"/\" + appContext + \"/\";",
+							"",
+							"",
+							"postman.setEnvironmentVariable(\"baseurl\", apiUrl);"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "{{baseurl}}project/",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"project\": \"project1\",\r\n    \"startDate\": \"2018-09-08T18:30:00.000+0000\",\r\n    \"endDate\": \"2018-09-08T18:30:00.000+0000\",\r\n    \"priority\": 2,\r\n    \"userId\": 1\r\n  }"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "parent/ ADD",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"// For Cloud Testing",
+							"// var apiUrl = \"\";",
+							"",
+							"//For Local Machine Testing",
+							"var domain = \"192.168.99.100\";",
+							"var port = \"8080\";",
+							"var appContext = \"projectmanagerbackend\";",
+							"var apiUrl = \"http://\" + domain + \":\" + port +\"/\" + appContext + \"/\";",
+							"",
+							"",
+							"postman.setEnvironmentVariable(\"baseurl\", apiUrl);"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "{{baseurl}}parent/",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"parentId\": 110,\n    \"parentTask\": \"ParentTask10\"\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "task/ ADD",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"// For Cloud Testing",
+							"// var apiUrl = \"\";",
+							"",
+							"//For Local Machine Testing",
+							"var domain = \"192.168.99.100\";",
+							"var port = \"8080\";",
+							"var appContext = \"projectmanagerbackend\";",
+							"var apiUrl = \"http://\" + domain + \":\" + port +\"/\" + appContext + \"/\";",
+							"",
+							"",
+							"postman.setEnvironmentVariable(\"baseurl\", apiUrl);"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "{{baseurl}}task/",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\"task\": \"taskName1\",\n\"startDate\": \"2018-09-08T18:30:00.000+0000\",\n\"endDate\": \"2018-09-08T18:30:00.000+0000\",\n\"priority\": 10,\n\"parentId\": -2,\n\"projectId\": -2,\n\"userId\": -2\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
 			"name": "user/{id} UPDATE",
 			"event": [
 				{
@@ -319,7 +397,7 @@
 							"// var apiUrl = \"\";",
 							"",
 							"//For Local Machine Testing",
-							"var domain = \"localhost\";",
+							"var domain = \"192.168.99.100\";",
 							"var port = \"8080\";",
 							"var appContext = \"projectmanagerbackend\";",
 							"var apiUrl = \"http://\" + domain + \":\" + port +\"/\" + appContext + \"/\";",
@@ -354,7 +432,7 @@
 			"response": []
 		},
 		{
-			"name": "user/:userId DELETE",
+			"name": "project/{id} UPDATE",
 			"event": [
 				{
 					"listen": "prerequest",
@@ -365,157 +443,7 @@
 							"// var apiUrl = \"\";",
 							"",
 							"//For Local Machine Testing",
-							"var domain = \"localhost\";",
-							"var port = \"8080\";",
-							"var appContext = \"projectmanagerbackend\";",
-							"var apiUrl = \"http://\" + domain + \":\" + port +\"/\" + appContext + \"/\";",
-							"",
-							"",
-							"postman.setEnvironmentVariable(\"baseurl\", apiUrl);",
-							"",
-							"var reqBody = JSON.parse(request.data);",
-							"var userId = reqBody.userId;",
-							"postman.setEnvironmentVariable(\"userId\", userId);"
-						]
-					}
-				}
-			],
-			"request": {
-				"url": "{{baseurl}}user/{{userId}}",
-				"method": "DELETE",
-				"header": [
-					{
-						"key": "Content-Type",
-						"value": "application/json",
-						"description": ""
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n    \"userId\": 2\r\n}"
-				},
-				"description": ""
-			},
-			"response": []
-		},
-		{
-			"name": "task/dump",
-			"event": [
-				{
-					"listen": "prerequest",
-					"script": {
-						"type": "text/javascript",
-						"exec": [
-							"// For Cloud Testing",
-							"// var apiUrl = \"\";",
-							"",
-							"//For Local Machine Testing",
-							"var domain = \"localhost\";",
-							"var port = \"8080\";",
-							"var appContext = \"projectmanagerbackend\";",
-							"var apiUrl = \"http://\" + domain + \":\" + port +\"/\" + appContext + \"/\";",
-							"",
-							"",
-							"postman.setEnvironmentVariable(\"baseurl\", apiUrl);"
-						]
-					}
-				}
-			],
-			"request": {
-				"url": "{{baseurl}}task/dump",
-				"method": "GET",
-				"header": [],
-				"body": {},
-				"description": ""
-			},
-			"response": []
-		},
-		{
-			"name": "task/list",
-			"event": [
-				{
-					"listen": "prerequest",
-					"script": {
-						"type": "text/javascript",
-						"exec": [
-							"// For Cloud Testing",
-							"// var apiUrl = \"\";",
-							"",
-							"//For Local Machine Testing",
-							"var domain = \"localhost\";",
-							"var port = \"8080\";",
-							"var appContext = \"projectmanagerbackend\";",
-							"var apiUrl = \"http://\" + domain + \":\" + port +\"/\" + appContext + \"/\";",
-							"",
-							"",
-							"postman.setEnvironmentVariable(\"baseurl\", apiUrl);"
-						]
-					}
-				}
-			],
-			"request": {
-				"url": "{{baseurl}}task/list",
-				"method": "GET",
-				"header": [],
-				"body": {},
-				"description": ""
-			},
-			"response": []
-		},
-		{
-			"name": "task/",
-			"event": [
-				{
-					"listen": "prerequest",
-					"script": {
-						"type": "text/javascript",
-						"exec": [
-							"// For Cloud Testing",
-							"// var apiUrl = \"\";",
-							"",
-							"//For Local Machine Testing",
-							"var domain = \"localhost\";",
-							"var port = \"8080\";",
-							"var appContext = \"projectmanagerbackend\";",
-							"var apiUrl = \"http://\" + domain + \":\" + port +\"/\" + appContext + \"/\";",
-							"",
-							"",
-							"postman.setEnvironmentVariable(\"baseurl\", apiUrl);"
-						]
-					}
-				}
-			],
-			"request": {
-				"url": "{{baseurl}}task/",
-				"method": "POST",
-				"header": [
-					{
-						"key": "Content-Type",
-						"value": "application/json",
-						"description": ""
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n    \"task\": \"TaskName16\",\n    \"parentId\": 105,\n    \"startDate\": \"2018-09-08T18:30:00.000+0000\",\n    \"endDate\": \"2018-09-08T18:30:00.000+0000\",\n    \"priority\": 10\n}"
-				},
-				"description": ""
-			},
-			"response": []
-		},
-		{
-			"name": "task/{id}",
-			"event": [
-				{
-					"listen": "prerequest",
-					"script": {
-						"type": "text/javascript",
-						"exec": [
-							"// For Cloud Testing",
-							"// var apiUrl = \"\";",
-							"",
-							"//For Local Machine Testing",
-							"var domain = \"localhost\";",
+							"var domain = \"192.168.99.100\";",
 							"var port = \"8080\";",
 							"var appContext = \"projectmanagerbackend\";",
 							"var apiUrl = \"http://\" + domain + \":\" + port +\"/\" + appContext + \"/\";",
@@ -524,29 +452,14 @@
 							"postman.setEnvironmentVariable(\"baseurl\", apiUrl);",
 							"",
 							"var reqBody = JSON.parse(request.data)",
-							"var taskId = reqBody.taskId;",
-							"postman.setEnvironmentVariable(\"taskId\", taskId);"
+							"var projectId = reqBody.projectId;",
+							"postman.setEnvironmentVariable(\"projectId\", projectId);"
 						]
 					}
 				}
 			],
 			"request": {
-				"url": {
-					"raw": "{{baseurl}}task/:taskId",
-					"host": [
-						"{{baseurl}}task"
-					],
-					"path": [
-						":taskId"
-					],
-					"query": [],
-					"variable": [
-						{
-							"key": "taskId",
-							"value": "{{taskId}}"
-						}
-					]
-				},
+				"url": "{{baseurl}}project/{{projectId}}",
 				"method": "PUT",
 				"header": [
 					{
@@ -557,14 +470,14 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"taskId\": 34,\n    \"task\": \"TaskName16_updated1\",\n    \"parentId\": 105,\n    \"parentTask\": \"ParentTask5\",\n    \"startDate\": \"2018-09-08T18:30:00.000+0000\",\n    \"endDate\": \"2018-09-08T18:30:00.000+0000\",\n    \"priority\": 11\n}"
+					"raw": "{\n    \"projectId\": 1,\n    \"project\": \"project1_updated\",\n    \"startDate\": \"2018-09-08T18:30:00.000+0000\",\n    \"endDate\": \"2018-09-08T18:30:00.000+0000\",\n    \"priority\": 2\n}"
 				},
 				"description": ""
 			},
 			"response": []
 		},
 		{
-			"name": "task/:taskId",
+			"name": "parent/{id} UPDATE",
 			"event": [
 				{
 					"listen": "prerequest",
@@ -575,172 +488,7 @@
 							"// var apiUrl = \"\";",
 							"",
 							"//For Local Machine Testing",
-							"var domain = \"localhost\";",
-							"var port = \"8080\";",
-							"var appContext = \"projectmanagerbackend\";",
-							"var apiUrl = \"http://\" + domain + \":\" + port +\"/\" + appContext + \"/\";",
-							"",
-							"",
-							"postman.setEnvironmentVariable(\"baseurl\", apiUrl);",
-							"",
-							"var reqBody = JSON.parse(request.data);",
-							"var taskId = reqBody.taskId;",
-							"postman.setEnvironmentVariable(\"taskId\", taskId);"
-						]
-					}
-				}
-			],
-			"request": {
-				"url": {
-					"raw": "{{baseurl}}task/:taskId",
-					"host": [
-						"{{baseurl}}task"
-					],
-					"path": [
-						":taskId"
-					],
-					"query": [],
-					"variable": [
-						{
-							"key": "taskId",
-							"value": "{{taskId}}"
-						}
-					]
-				},
-				"method": "DELETE",
-				"header": [
-					{
-						"key": "Content-Type",
-						"value": "application/json",
-						"description": ""
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n    \"taskId\": 33,\n    \"task\": \"TaskName16\",\n    \"parentId\": 105,\n    \"parentTask\": \"ParentTask5\",\n    \"startDate\": \"2018-09-08T18:30:00.000+0000\",\n    \"endDate\": \"2018-09-08T18:30:00.000+0000\",\n    \"priority\": 10\n}"
-				},
-				"description": ""
-			},
-			"response": []
-		},
-		{
-			"name": "parent/dump",
-			"event": [
-				{
-					"listen": "prerequest",
-					"script": {
-						"type": "text/javascript",
-						"exec": [
-							"// For Cloud Testing",
-							"// var apiUrl = \"\";",
-							"",
-							"//For Local Machine Testing",
-							"var domain = \"localhost\";",
-							"var port = \"8080\";",
-							"var appContext = \"projectmanagerbackend\";",
-							"var apiUrl = \"http://\" + domain + \":\" + port +\"/\" + appContext + \"/\";",
-							"",
-							"",
-							"postman.setEnvironmentVariable(\"baseurl\", apiUrl);"
-						]
-					}
-				}
-			],
-			"request": {
-				"url": "{{baseurl}}parent/dump",
-				"method": "GET",
-				"header": [],
-				"body": {},
-				"description": ""
-			},
-			"response": []
-		},
-		{
-			"name": "parent/list",
-			"event": [
-				{
-					"listen": "prerequest",
-					"script": {
-						"type": "text/javascript",
-						"exec": [
-							"// For Cloud Testing",
-							"// var apiUrl = \"\";",
-							"",
-							"//For Local Machine Testing",
-							"var domain = \"localhost\";",
-							"var port = \"8080\";",
-							"var appContext = \"projectmanagerbackend\";",
-							"var apiUrl = \"http://\" + domain + \":\" + port +\"/\" + appContext + \"/\";",
-							"",
-							"",
-							"postman.setEnvironmentVariable(\"baseurl\", apiUrl);"
-						]
-					}
-				}
-			],
-			"request": {
-				"url": "{{baseurl}}parent/list",
-				"method": "GET",
-				"header": [],
-				"body": {},
-				"description": ""
-			},
-			"response": []
-		},
-		{
-			"name": "parent/",
-			"event": [
-				{
-					"listen": "prerequest",
-					"script": {
-						"type": "text/javascript",
-						"exec": [
-							"// For Cloud Testing",
-							"// var apiUrl = \"\";",
-							"",
-							"//For Local Machine Testing",
-							"var domain = \"localhost\";",
-							"var port = \"8080\";",
-							"var appContext = \"projectmanagerbackend\";",
-							"var apiUrl = \"http://\" + domain + \":\" + port +\"/\" + appContext + \"/\";",
-							"",
-							"",
-							"postman.setEnvironmentVariable(\"baseurl\", apiUrl);"
-						]
-					}
-				}
-			],
-			"request": {
-				"url": "{{baseurl}}parent/",
-				"method": "POST",
-				"header": [
-					{
-						"key": "Content-Type",
-						"value": "application/json",
-						"description": ""
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n    \"parentId\": 110,\n    \"parentTask\": \"ParentTask10\"\n}"
-				},
-				"description": ""
-			},
-			"response": []
-		},
-		{
-			"name": "parent/{id}",
-			"event": [
-				{
-					"listen": "prerequest",
-					"script": {
-						"type": "text/javascript",
-						"exec": [
-							"// For Cloud Testing",
-							"// var apiUrl = \"\";",
-							"",
-							"//For Local Machine Testing",
-							"var domain = \"localhost\";",
+							"var domain = \"192.168.99.100\";",
 							"var port = \"8080\";",
 							"var appContext = \"projectmanagerbackend\";",
 							"var apiUrl = \"http://\" + domain + \":\" + port +\"/\" + appContext + \"/\";",
@@ -789,7 +537,7 @@
 			"response": []
 		},
 		{
-			"name": "parent/:parentId",
+			"name": "task/{id} UPDATE",
 			"event": [
 				{
 					"listen": "prerequest",
@@ -800,7 +548,157 @@
 							"// var apiUrl = \"\";",
 							"",
 							"//For Local Machine Testing",
-							"var domain = \"localhost\";",
+							"var domain = \"192.168.99.100\";",
+							"var port = \"8080\";",
+							"var appContext = \"projectmanagerbackend\";",
+							"var apiUrl = \"http://\" + domain + \":\" + port +\"/\" + appContext + \"/\";",
+							"",
+							"",
+							"postman.setEnvironmentVariable(\"baseurl\", apiUrl);",
+							"",
+							"var reqBody = JSON.parse(request.data)",
+							"var taskId = reqBody.taskId;",
+							"postman.setEnvironmentVariable(\"taskId\", taskId);"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": {
+					"raw": "{{baseurl}}task/:taskId",
+					"host": [
+						"{{baseurl}}task"
+					],
+					"path": [
+						":taskId"
+					],
+					"query": [],
+					"variable": [
+						{
+							"key": "taskId",
+							"value": "{{taskId}}"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"taskId\": 1,\n    \"task\": \"taskName1_updated4\",\n    \"startDate\": \"2018-09-08T18:30:00.000+0000\",\n    \"endDate\": \"2018-09-08T18:30:00.000+0000\",\n    \"priority\": 11,\n    \"parentId\": 200,\n    \"projectId\": 100,\n    \"userId\": 300\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "user/:userId DELETE",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"// For Cloud Testing",
+							"// var apiUrl = \"\";",
+							"",
+							"//For Local Machine Testing",
+							"var domain = \"192.168.99.100\";",
+							"var port = \"8080\";",
+							"var appContext = \"projectmanagerbackend\";",
+							"var apiUrl = \"http://\" + domain + \":\" + port +\"/\" + appContext + \"/\";",
+							"",
+							"",
+							"postman.setEnvironmentVariable(\"baseurl\", apiUrl);",
+							"",
+							"var reqBody = JSON.parse(request.data);",
+							"var userId = reqBody.userId;",
+							"postman.setEnvironmentVariable(\"userId\", userId);"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "{{baseurl}}user/{{userId}}",
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"userId\": 7\r\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "project/:userId DELETE",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"// For Cloud Testing",
+							"// var apiUrl = \"\";",
+							"",
+							"//For Local Machine Testing",
+							"var domain = \"192.168.99.100\";",
+							"var port = \"8080\";",
+							"var appContext = \"projectmanagerbackend\";",
+							"var apiUrl = \"http://\" + domain + \":\" + port +\"/\" + appContext + \"/\";",
+							"",
+							"",
+							"postman.setEnvironmentVariable(\"baseurl\", apiUrl);",
+							"",
+							"var reqBody = JSON.parse(request.data);",
+							"var projectId = reqBody.projectId;",
+							"postman.setEnvironmentVariable(\"projectId\", projectId);"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "{{baseurl}}project/{{projectId}}",
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"projectId\": 7\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "parent/:parentId DELETE",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"// For Cloud Testing",
+							"// var apiUrl = \"\";",
+							"",
+							"//For Local Machine Testing",
+							"var domain = \"192.168.99.100\";",
 							"var port = \"8080\";",
 							"var appContext = \"projectmanagerbackend\";",
 							"var apiUrl = \"http://\" + domain + \":\" + port +\"/\" + appContext + \"/\";",
@@ -842,7 +740,67 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"parentId\": 1,\r\n    \"parentTask\": \"ParentTask1_updated\"\r\n}"
+					"raw": "{\r\n    \"parentId\": 8\r\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "task/:taskId DELETE",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"// For Cloud Testing",
+							"// var apiUrl = \"\";",
+							"",
+							"//For Local Machine Testing",
+							"var domain = \"192.168.99.100\";",
+							"var port = \"8080\";",
+							"var appContext = \"projectmanagerbackend\";",
+							"var apiUrl = \"http://\" + domain + \":\" + port +\"/\" + appContext + \"/\";",
+							"",
+							"",
+							"postman.setEnvironmentVariable(\"baseurl\", apiUrl);",
+							"",
+							"var reqBody = JSON.parse(request.data);",
+							"var taskId = reqBody.taskId;",
+							"postman.setEnvironmentVariable(\"taskId\", taskId);"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": {
+					"raw": "{{baseurl}}task/:taskId",
+					"host": [
+						"{{baseurl}}task"
+					],
+					"path": [
+						":taskId"
+					],
+					"query": [],
+					"variable": [
+						{
+							"key": "taskId",
+							"value": "{{taskId}}"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"taskId\": 8\n}"
 				},
 				"description": ""
 			},

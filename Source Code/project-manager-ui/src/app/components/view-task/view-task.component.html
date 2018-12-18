@@ -1,0 +1,67 @@
+<div class="row">
+  <label>Project:</label>
+  <input type="text" class="search-text" placeholder="Select..." [value]="selectedProject" disabled />
+  <button type="button" class="col-lg-1 col-md-1 col-sm-1 col-xs-1 btn btn-info btn-sm search" data-toggle="modal" data-target="#projectModal">Search</button>
+  <div id="projectModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">Choose a project</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        <div class="modal-body">
+          <select class="form-control" [value]="project" (change)="changeProject($event)">
+            <option *ngFor="let project of (projects$ | async)" [value]="project.projectId">
+              {{project.project}}
+            </option>
+          </select>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" (click)="selectProjectname(project)" data-dismiss="modal">Select</button>
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+    <span class="col-lg-7 col-md-7 col-sm-7 col-xs-7 align-right">
+      <span>
+        <label>Sort Task By:</label>
+        <button class="btn btn-default" (click)="sort('startDate', 'date')">Start Date</button>
+      </span>
+      <span>
+        <button class="btn btn-default" (click)="sort('endDate', 'date')">End Date</button>
+      </span>
+      <span>
+        <button class="btn btn-default" (click)="sort('priority', 'number')">Priority</button>
+      </span>
+      <span>
+        <button class="btn btn-default" (click)="sortCompleted()">Completed</button>
+      </span>
+    </span>
+  </div>
+<hr>
+<div *ngIf="(tasks$ | async)?.length">
+  <div *ngFor="let task of (tasks$ | async)">
+    <div class="row heading">
+      <span class="col-lg-2 col-md-2 col-sm-2 col-xs-2">Task</span>
+      <span class="col-lg-2 col-md-2 col-sm-2 col-xs-2">Parent</span>
+      <span class="col-lg-2 col-md-2 col-sm-2 col-xs-2">Priority</span>
+      <span class="col-lg-2 col-md-2 col-sm-2 col-xs-2">Start</span>
+      <span class="col-lg-2 col-md-2 col-sm-2 col-xs-2">End</span>
+      <span class="col-lg-2 col-md-2 col-sm-2 col-xs-2"></span>
+    </div>
+    <div class="row task-details">
+      <span class="col-lg-2 col-md-2 col-sm-2 col-xs-2">{{ task.task }}</span>
+      <span *ngIf="task.parentTask" class="col-lg-2 col-md-2 col-sm-2 col-xs-2">{{ task.parentTask }}</span>
+      <span *ngIf="!task.parentTask" class="col-lg-2 col-md-2 col-sm-2 col-xs-2">NA</span>
+      <span class="col-lg-2 col-md-2 col-sm-2 col-xs-2">{{ task.priority }}</span>
+      <span class="col-lg-2 col-md-2 col-sm-2 col-xs-2">{{ getDate(task.startDate) }}</span>
+      <span class="col-lg-2 col-md-2 col-sm-2 col-xs-2">{{ getDate(task.endDate) }}</span>
+      <span class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+        <span> <button class="btn btn-default" [routerLink]="['/editTask', task.taskId]">Edit</button></span>
+        <span><button type="button" class="btn btn-default" (click)="endTask(task.taskId)">End Task</button></span>
+      </span>
+    </div>
+  </div>
+</div>
+<div *ngIf="!(tasks$ | async)?.length">No tasks available</div>

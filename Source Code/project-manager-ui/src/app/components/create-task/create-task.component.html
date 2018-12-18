@@ -1,0 +1,181 @@
+<form [formGroup]="myForm" (submit)="onSubmit()">
+  <div class="row">
+    <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+      <div class="row form-group">
+        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+          <p>
+            Project
+          </p>
+        </div>
+        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+          <input type="text" disabled class="form-control" [value]="selectedProject"/>
+        </div>
+        <button type="button" class="col-lg-2 col-md-2 col-sm-2 col-xs-2 btn btn-info btn-sm search" data-toggle="modal" data-target="#projectModal">Search</button>
+        <div id="projectModal" class="modal fade" role="dialog">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h4 class="modal-title">Project</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+              </div>
+              <div class="modal-body">
+                <p>Select project</p>
+                <select class="form-control" [(ngModel)]="project" formControlName="project">
+                  <option *ngFor="let project of (projects$ | async)" [value]="project.projectId">
+                    {{project.project}}
+                  </option>
+                </select>
+                <span *ngIf="myForm.controls.project.errors">Please select project name.</span>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-primary" (click)="selectProject(project)" data-dismiss="modal">Select</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row form-group">
+        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+          <p>
+            Task:
+          </p>
+        </div>
+        <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+          <input type="text" class="form-control" formControlName="task" [(ngModel)]="taskName"/>
+          <span [hidden]="myForm.controls.task.valid || (myForm.controls.task.pristine && !submitted)">Please enter proper Task Name.</span>
+        </div>
+      </div>
+      <div class="row form-group">
+        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4"></div>
+        <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+          <input type="checkbox" class="" formControlName="isParentTask" [(ngModel)]="isParentTask"/>
+            Parent Task
+        </div>
+      </div>
+      <div class="row form-group">
+        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+          <p>
+            Priority:
+          </p>
+        </div>
+        <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+          <span class="minPriority">{{minPriority}}</span>
+          <span class="maxPriority">{{maxPriority}}</span>
+          <input type="range" [disabled]="isParentTask" [(ngModel)]="priority" [max]="maxPriority" [min]="minPriority" class="form-control" formControlName="priority"/>
+          <span [hidden]="myForm.controls.priority.valid || (myForm.controls.priority.pristine && !submitted)">Please select proper Priority.</span>
+        </div>
+      </div>
+      <div class="row form-group">
+        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+          <p>
+            Parent Task
+          </p>
+        </div>
+        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+          <input type="text" disabled class="form-control" [value]="selectedTask"/>
+        </div>
+        <button type="button" [disabled]="isParentTask" class="col-lg-2 col-md-2 col-sm-2 col-xs-2 btn btn-info btn-sm search" data-toggle="modal" data-target="#parentTaskModal">Search</button>
+        <div id="parentTaskModal" class="modal fade" role="dialog">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h4 class="modal-title">Parent task</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+              </div>
+              <div class="modal-body">
+                <p>Select parent task</p>
+                <select class="form-control" [(ngModel)]="parentTask" formControlName="parentTask">
+                  <option *ngFor="let task of (parentTasks$ | async)" [value]="task.parentId">
+                    {{task.parentTask}}
+                  </option>
+                </select>
+                <span *ngIf="myForm.controls.parentTask.errors">Please select parent task.</span>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-primary" (click)="selectParentTask(parentTask)" data-dismiss="modal">Select</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row form-group">
+          <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+          <p>
+            Start Date:
+          </p>
+        </div>
+        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+          <input type="date" [disabled]="isParentTask" class="form-control" formControlName="sdate" [(ngModel)]="startDate"/>
+          <span [hidden]="myForm.controls.sdate.valid || (myForm.controls.sdate.pristine && !submitted)">Please enter proper Start Date.</span>
+        </div>
+      </div>
+      <div class="row form-group">
+        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+          <p>
+            End Date:
+          </p>
+        </div>
+        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+          <input type="date" [disabled]="isParentTask" class="form-control" formControlName="edate" [(ngModel)]="endDate"/>
+          <span [hidden]="myForm.controls.edate.valid || (myForm.controls.edate.pristine && !submitted)">Please enter proper End Date.</span>
+        </div>
+      </div>
+      <div class="row form-group">
+        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+          <p>
+            Users
+          </p>
+        </div>
+        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+          <input type="text" disabled class="form-control" [value]="selectedUser"/>
+        </div>
+        <button [disabled]="isParentTask" type="button" class="col-lg-2 col-md-2 col-sm-2 col-xs-2 btn btn-info btn-sm search" data-toggle="modal" data-target="#userModal">Search</button>
+        <div id="userModal" class="modal fade" role="dialog">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h4 class="modal-title">Project</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+              </div>
+              <div class="modal-body">
+                <p>Select project</p>
+                <select class="form-control" [(ngModel)]="user" formControlName="user">
+                  <option *ngFor="let userDetails of (users$ | async)" [value]="userDetails.userId">
+                    {{userDetails.firstName}} {{userDetails.lastName}}
+                  </option>
+                </select>
+                <span *ngIf="myForm.controls.user.errors">Please select an user.</span>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-primary" (click)="selectUser(user)" data-dismiss="modal">Select</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class-="row form-group" *ngIf="validationError">
+        <span class="error">{{validationError}}</span>
+      </div>
+      <div class="row form-group" *ngIf="!editedTaskId">
+        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+          <button type="submit" class="btn btn-primary form-control">Add Task</button>
+        </div>
+        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+          <button type="reset" class="btn btn-primary form-control">Reset</button>
+        </div>
+      </div>
+      <div class="row form-group" *ngIf="editedTaskId">
+        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+          <button type="submit" class="btn btn-primary form-control">Update Task</button>
+        </div>
+        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+          <button type="button" class="btn btn-primary form-control" (click)="cancelEdit()">Cancel</button>
+        </div>
+      </div>
+    </div>
+    <br>
+  </div>
+</form>

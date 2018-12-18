@@ -1,0 +1,19 @@
+<!--The content below is only a placeholder and can be replaced.-->
+<div class="header">
+  <h3>
+    Project Manager
+  </h3>
+  <span id="subHeading">{{subHeading}}</span>
+</div>
+<div class="container">
+  <nav class="nav">
+    <a (click)="clicked($event)" class="nav-link" routerLink="/createProject">Add Project</a>
+    <a (click)="clicked($event)" class="nav-link active" routerLink="/createTask">Add Task</a>
+    <a (click)="clicked($event)" class="nav-link" routerLink="/createUser">Add User</a>
+    <a (click)="clicked($event)" class="nav-link" routerLink="/viewTask">View Task</a>
+  </nav>
+  <hr>
+  <router-outlet></router-outlet>
+</div>
+
+

@@ -1,0 +1,18 @@
+.heading {
+    font-weight: bold;
+}
+
+.search {
+    height: 37px;
+}
+
+.search-text {
+    height: 35px;
+    width: 150px;
+    margin: 0 10px;
+    padding: 0 10px;
+}
+
+.task-details {
+    background: #eee;
+}
